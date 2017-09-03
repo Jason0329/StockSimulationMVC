@@ -7,8 +7,9 @@ namespace StockSimulationMVC.Models
 {
     public class BarginRewardDataModel
     {
-        public int company { get; set; }
-        public DateTime date { get; set; }
+        public int ID { get; set; }
+        public int Company { get; set; }
+        public DateTime Date { get; set; }
         public double ForeignInvestorNetBuySell { get; set; }
         public double InvestmentTrustNetBuySell { get; set; }
         public double DealerNetBuySell { get; set; }

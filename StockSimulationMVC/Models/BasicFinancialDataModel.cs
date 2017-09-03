@@ -7,7 +7,8 @@ namespace StockSimulationMVC.Models
 {
     public class BasicFinancialDataModel
     {
-        public int company { get; set; }
+        public int ID { get; set; }
+        public int Company { get; set; }
         public DateTime Date { get; set; }
         public double CurrentLiabilities { get; set; }//流動負債
         public double LongTermLiabilities { get; set; }

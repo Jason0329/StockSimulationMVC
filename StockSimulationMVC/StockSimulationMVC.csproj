@@ -45,12 +45,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\..\..\..\..\Desktop\客戶專區\nopCommerce_3.90_Source\Libraries\Nop.Data\bin\Debug\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\..\..\..\Desktop\客戶專區\nopCommerce_3.90_Source\Libraries\Nop.Data\bin\Debug\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\GenericRepository\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -178,10 +188,12 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="GenericRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Interface\IFinancialInstrument.cs" />
+    <Compile Include="Interface\IRepository.cs" />
     <Compile Include="Interface\IStrategy.cs" />
     <Compile Include="Models\BarginDataModel.cs" />
     <Compile Include="Models\BarginRewardDataModel.cs" />
@@ -194,6 +206,12 @@
     <Compile Include="Models\TechnologicalDataListModel.cs" />
     <Compile Include="Models\TechnologicalDataModel.cs" />
     <Compile Include="Models\TransactionResultModel.cs" />
+    <Compile Include="ObjectContext\BarginDataMapping.cs" />
+    <Compile Include="ObjectContext\BarginRewardDataMapping.cs" />
+    <Compile Include="ObjectContext\FinancialDataModelMapping.cs" />
+    <Compile Include="ObjectContext\MonthRevenueMapping.cs" />
+    <Compile Include="ObjectContext\TechnologicalDataModelMapping.cs" />
+    <Compile Include="ObjectContext\DataObjectContext.cs" />
     <Compile Include="Service\TransactionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Simulation-DataList\TechnologicalDataList.cs" />

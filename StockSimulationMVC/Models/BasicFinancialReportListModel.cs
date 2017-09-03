@@ -282,7 +282,7 @@ namespace StockSimulationMVC.Models
             #endregion
 
             //Console.WriteLine(DataList[BasicFinancialInt].Date.Year+" "+DataList[BasicFinancialInt].Date.Month);
-            //Console.WriteLine(RevenueList[RevenueInt].date);
+            //Console.WriteLine(RevenueList[RevenueInt].Date);
         }
         #endregion
 
@@ -296,15 +296,15 @@ namespace StockSimulationMVC.Models
 
                 for (int i = 0; i < RevenueList.Count; i++)
                 {
-                    if (RevenueList[i].date.Month.CompareTo(dt.Month - 1) == 0
-                        && RevenueList[i].date.Year.CompareTo(dt.Year) == 0
+                    if (RevenueList[i].Date.Month.CompareTo(dt.Month - 1) == 0
+                        && RevenueList[i].Date.Year.CompareTo(dt.Year) == 0
                         && (dt.Month != 1))
                     {
                         RevenueInt = i;
                         break;
                     }
-                    else if (dt.Month == 1 && RevenueList[i].date.Year.CompareTo(dt.Year - 1) == 0
-                        && (RevenueList[i].date.Month.CompareTo(12) == 0))
+                    else if (dt.Month == 1 && RevenueList[i].Date.Year.CompareTo(dt.Year - 1) == 0
+                        && (RevenueList[i].Date.Month.CompareTo(12) == 0))
                     {
                         RevenueInt = i;
                         break;
