@@ -17,8 +17,7 @@ namespace StockSimulationMVC.ObjectContext
             Property(m => m.Date);
             Property(m => m.MonthRevenue);
             Property(m => m.MonthRiseRatioInSameMonth);
-            Property(m => m.MonthRevenueRiseRatio);
-           
+            Property(m => m.MonthRevenueRiseRatio);            
         }
     }
 }

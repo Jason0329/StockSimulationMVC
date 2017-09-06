@@ -17,7 +17,7 @@ namespace StockSimulationMVC.Simulation_SimulationStart
             //之後平行化處理看看
             for(int i=0; i< Company.Count; i++)
             {
-                Company_DataInitial(Company[i]);
+                Initial_CompanyData(Company[i]);
                 SimulationVariable _SimulationVariable = new SimulationVariable();
 
                 for (int j =0; j <SimualationDays; j++)
@@ -46,7 +46,7 @@ namespace StockSimulationMVC.Simulation_SimulationStart
             return 0;
         }
 
-        private void Company_DataInitial(int v)
+        private void Initial_CompanyData(int v)
         {
             throw new NotImplementedException();
         }

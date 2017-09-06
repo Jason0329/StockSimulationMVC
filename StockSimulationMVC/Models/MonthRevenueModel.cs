@@ -13,5 +13,6 @@ namespace StockSimulationMVC.Models
         public double MonthRevenue { get; set; }
         public double MonthRiseRatioInSameMonth { get; set; }
         public double MonthRevenueRiseRatio { get; set; }
+
     }
 }

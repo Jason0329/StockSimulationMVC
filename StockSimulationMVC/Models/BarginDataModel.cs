@@ -22,5 +22,7 @@ namespace StockSimulationMVC.Models
         public double marginloanUseRatio { get; set; }
         public double stockloanUseRatio { get; set; }
         public double MarginStockRatio { get; set; }
+
+       
     }
 }
