@@ -74,31 +74,53 @@ namespace StockSimulationMVC.Core
             }
             return SelectedData;
         }
-
-        void Initial_MinClosePrice(params int[] MinDays)//最低價
+        public List<double> MinValue(int MinDays)//新低
         {
-            double Min = 10000;
+            double Min = int.MaxValue;
+            List<double> MinData = new List<double>();
 
+            for (int i = 0; i < MinDays; i++)
+            {
+                MinData.Add(0);
+            }
 
-            //for (int k = 0; k < MinDays.Length; k++)
-            //{
-            //    for (int i = MinDays[k]; i < TechData.Count; i++)
-            //    {
-            //        if (TechData[i].MinPrice == null)
-            //        {
-            //            TechData[i].MinPrice = new double[MinDays.Length];
-            //        }
+            for (int i = MinDays; i < SelectedData.Count; i++)
+            {
 
-            //        for (int j = 0; j < MinDays[k]; j++)
-            //        {
-            //            if (TechData[i - j].ClosePrice < Min)
-            //                Min = TechData[i - j].ClosePrice;
-            //        }
+                for (int j = 0; j < MinDays; j++)
+                {
+                    if (SelectedData[i - j] < Min)
+                        Min = SelectedData[i - j];
+                }
 
-            //        TechData[i].MinPrice[k] = Min;
-            //        Min = 10000;
-            //    }
-            //}
+                SelectedData.Add(Min);
+                Min = int.MaxValue;
+            }
+
+            return MinData;
+        }
+
+        void Initial_Acculation(int AcculationDays)
+        {
+            double Acc = 0;
+            for (int k = 0; k < AcculationDays.Length; k++)
+            {
+                for (int i = AcculationDays[k]; i < TechData.Count; i++)
+                {
+                    if (TechData[i].Acculation == null)
+                    {
+                        TechData[i].Acculation = new double[AcculationDays.Length];
+                    }
+
+                    for (int j = 0; j < AcculationDays[k]; j++)
+                    {
+                        Acc += TechData[i - j].ReturnOnInvestment;
+                    }
+
+                    TechData[i].Acculation[k] = Acc;
+                    Acc = 0;
+                }
+            }
         }
     }
 }
