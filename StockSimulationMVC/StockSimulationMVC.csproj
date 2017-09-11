@@ -200,12 +200,12 @@
     <Compile Include="Models\BarginDataModel.cs" />
     <Compile Include="Models\BarginRewardDataModel.cs" />
     <Compile Include="Models\BasicFinancialDataModel.cs" />
-    <Compile Include="Models\BasicFinancialReportListModel.cs" />
+    <Compile Include="Service\BasicFinancialReportList.cs" />
     <Compile Include="Models\BuyModel.cs" />
     <Compile Include="Models\MonthRevenueModel.cs" />
     <Compile Include="Models\SellModel.cs" />
     <Compile Include="Models\TaiwanStockIndexModel.cs" />
-    <Compile Include="Models\TechnologicalDataListModel.cs" />
+    <Compile Include="Service\TechnologicalDataList.cs" />
     <Compile Include="Models\TechnologicalDataModel.cs" />
     <Compile Include="Models\TransactionResultModel.cs" />
     <Compile Include="ObjectContext\BarginDataMapping.cs" />
@@ -214,6 +214,7 @@
     <Compile Include="ObjectContext\MonthRevenueMapping.cs" />
     <Compile Include="ObjectContext\TechnologicalDataModelMapping.cs" />
     <Compile Include="ObjectContext\DataObjectContext.cs" />
+    <Compile Include="Service\TransactionList.cs" />
     <Compile Include="Service\TransactionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Simulation-DataList\TechnologicalDataList.cs" />

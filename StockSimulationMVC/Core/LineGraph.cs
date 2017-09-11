@@ -69,10 +69,10 @@ namespace StockSimulationMVC.Core
                         Max = SelectedData[i - j];
                 }
 
-                SelectedData.Add(Max);
+                MaxData.Add(Max);
                 Max = 0;
             }
-            return SelectedData;
+            return MaxData;
         }
         public List<double> MinValue(int MinDays)//新低
         {
@@ -93,34 +93,34 @@ namespace StockSimulationMVC.Core
                         Min = SelectedData[i - j];
                 }
 
-                SelectedData.Add(Min);
+                MinData.Add(Min);
                 Min = int.MaxValue;
             }
 
             return MinData;
         }
-
-        void Initial_Acculation(int AcculationDays)
+        public List<double> Acculation(int AcculationDays)//多日累積
         {
             double Acc = 0;
-            for (int k = 0; k < AcculationDays.Length; k++)
+            List<double> Accul = new List<double>();
+
+            for (int i = 0; i < AcculationDays; i++)
             {
-                for (int i = AcculationDays[k]; i < TechData.Count; i++)
-                {
-                    if (TechData[i].Acculation == null)
-                    {
-                        TechData[i].Acculation = new double[AcculationDays.Length];
-                    }
-
-                    for (int j = 0; j < AcculationDays[k]; j++)
-                    {
-                        Acc += TechData[i - j].ReturnOnInvestment;
-                    }
-
-                    TechData[i].Acculation[k] = Acc;
-                    Acc = 0;
-                }
+                Accul.Add(0);
             }
+
+            for (int i = AcculationDays; i < SelectedData.Count; i++)
+            {
+                for (int j = 0; j < AcculationDays; j++)
+                {
+                    Acc += SelectedData[i - j];
+                }
+
+                Accul.Add(Acc);
+                Acc = 0;
+            }
+
+            return Accul;
         }
     }
 }
