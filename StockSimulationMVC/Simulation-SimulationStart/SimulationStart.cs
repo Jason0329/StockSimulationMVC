@@ -29,12 +29,13 @@ namespace StockSimulationMVC.Simulation_SimulationStart
             {
                 Initial_CompanyData(Company[i]);
                 SimulationVariable _SimulationVariable = new SimulationVariable();
+                Transaction transaction = new Transaction() ;
 
                 for (int j =0; j < TechDataList.TechData.Count; j++)
                 {
                     if (_SimulationVariable.HasBuy)
                     {
-                        //_SimulationVariable.CountDays();// put TechData Return on Investment
+                        _SimulationVariable.CountDays(TechDataList.TechData[j].ReturnOnInvestment);// put TechData Return on Investment
                     }
 
                     #region 看買賣條件
@@ -43,7 +44,9 @@ namespace StockSimulationMVC.Simulation_SimulationStart
 
                     if (_SimulationVariable.CanBuy && !_SimulationVariable.HasBuy)
                     {
-                        Transaction_List._TransactionList.Add(new Transaction());
+                        transaction = new Transaction();
+                        transaction.Buy(TechDataList.TechData[j].Company.ToString(), TechDataList.TechData[j].CompanyName,
+                            TechDataList.TechData[j].ClosePrice, TechDataList.TechData[j].Date);
 
                         _SimulationVariable.HasBuy = true;
 
@@ -51,6 +54,10 @@ namespace StockSimulationMVC.Simulation_SimulationStart
 
                     if (_SimulationVariable.CanSell && !_SimulationVariable.HasSell)
                     {
+                        transaction.Sell(TechDataList.TechData[j].Company.ToString(), TechDataList.TechData[j].CompanyName,
+                            TechDataList.TechData[j].ClosePrice, TechDataList.TechData[j].Date);
+
+                        Transaction_List._TransactionList.Add(transaction);
 
                         _SimulationVariable.HasBuy = false;
                         _SimulationVariable.Initial();

@@ -9,11 +9,12 @@ namespace StockSimulationMVC.Models
     {
         public int ID { get; set; }
         public int Company { get; set; }
+        public string CompanyName { get; set; }
         public DateTime Date { get; set; }
-        public double OpenPrice { get; set; }
-        public double HighestPrice { get; set; }
-        public double LowestPrice { get; set; }
-        public double ClosePrice { get; set; }
+        public Decimal OpenPrice { get; set; }
+        public Decimal HighestPrice { get; set; }
+        public Decimal LowestPrice { get; set; }
+        public Decimal ClosePrice { get; set; }
         public double ReturnOnInvestment { get; set; }
         public double Yield { get; set; }
         public double Volume { get; set; }
