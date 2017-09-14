@@ -5,7 +5,7 @@ using System.Web;
 
 namespace StockSimulationMVC.Interface
 {
-    interface IStrategy
+    public interface IStrategy
     {
         bool BuyCondition();
         bool SellCondition();

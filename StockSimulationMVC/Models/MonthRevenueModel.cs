@@ -7,6 +7,7 @@ namespace StockSimulationMVC.Models
 {
     public class MonthRevenueModel
     {
+        
         public int ID { get; set; }
         public int Company { get; set; }
         public DateTime Date { get; set; }

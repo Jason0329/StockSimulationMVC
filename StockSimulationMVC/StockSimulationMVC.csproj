@@ -205,7 +205,7 @@
     <Compile Include="Models\MonthRevenueModel.cs" />
     <Compile Include="Models\SellModel.cs" />
     <Compile Include="Models\TaiwanStockIndexModel.cs" />
-    <Compile Include="Service\TechnologicalDataList.cs" />
+    <Compile Include="Service\DataList.cs" />
     <Compile Include="Models\TechnologicalDataModel.cs" />
     <Compile Include="Models\TransactionResultModel.cs" />
     <Compile Include="ObjectContext\BarginDataMapping.cs" />

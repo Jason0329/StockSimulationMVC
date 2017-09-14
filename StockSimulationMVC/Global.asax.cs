@@ -74,10 +74,10 @@ namespace StockSimulationMVC
 
             TechnologicalDataModel tttt = new TechnologicalDataModel();
             tttt.ID = 5;
-            tttt.LowestPrice = 24.3;
-            tttt.OpenPrice = 20.3;
-            tttt.HighestPrice = 14323.3;
-            tttt.ClosePrice = 325.23;
+            tttt.LowestPrice = 22;
+            tttt.OpenPrice = 20.3M;
+            tttt.HighestPrice = 14323.3M;
+            tttt.ClosePrice = 325.23M;
             tttt.Company = 2330;
             tttt.Date = DateTime.Now;
             tttt.Volume = 9000;
@@ -85,7 +85,7 @@ namespace StockSimulationMVC
             container1.Resolve<IRepository<TechnologicalDataModel>>(new TypedParameter(typeof(DbContext), new DataObjectContext())).Create(tttt);
             List<TechnologicalDataModel> aall = container1.Resolve<IRepository<TechnologicalDataModel>>(new TypedParameter(typeof(DbContext), new DataObjectContext())).GetAll().ToList();
 
-            TechnologicalDataListModel add = new TechnologicalDataListModel();
+            //TechnologicalDataListModel add = new TechnologicalDataListModel();
             
             //LineGraph ggg = new LineGraph();
             //ggg.SelectData(ref aall, "HighestPrice");

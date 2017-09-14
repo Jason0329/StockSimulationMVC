@@ -1,4 +1,5 @@
 ﻿using StockSimulationMVC.Core;
+using StockSimulationMVC.Interface;
 using StockSimulationMVC.Models;
 using StockSimulationMVC.Service;
 using System;
@@ -12,13 +13,16 @@ namespace StockSimulationMVC.Simulation_SimulationStart
     {
         readonly int SimualationDays = 1000;
         List<int> Company;//還未初始化
-        TechnologicalDataListModel TechDataList = new TechnologicalDataListModel();
+        DataList DataList = new DataList();
         TransactionList Transaction_List;
-        public SimulationStart()
+        private IStrategy _strategy;
+
+        public SimulationStart(IStrategy strategy )
         {
             Company = new List<int>();
-            TechDataList = new TechnologicalDataListModel();
+            //TechDataList = new TechnologicalDataListModel();
             Transaction_List = new TransactionList();
+            _strategy = strategy;
         }
 
         
@@ -31,31 +35,31 @@ namespace StockSimulationMVC.Simulation_SimulationStart
                 SimulationVariable _SimulationVariable = new SimulationVariable();
                 Transaction transaction = new Transaction() ;
 
-                for (int j =0; j < TechDataList.TechData.Count; j++)
+                for (int j =0; j < DataList.TechData.Count; j++)
                 {
                     if (_SimulationVariable.HasBuy)
                     {
-                        _SimulationVariable.CountDays(TechDataList.TechData[j].ReturnOnInvestment);// put TechData Return on Investment
+                        _SimulationVariable.CountDays(DataList.TechData[j].ReturnOnInvestment);// put TechData Return on Investment
                     }
 
                     #region 看買賣條件
-                    ///BuySell_ConditionForRise();
+                    //BuySell_Condition(ref SimulationVariable , j);
                     #endregion
 
                     if (_SimulationVariable.CanBuy && !_SimulationVariable.HasBuy)
                     {
                         transaction = new Transaction();
-                        transaction.Buy(TechDataList.TechData[j].Company.ToString(), TechDataList.TechData[j].CompanyName,
-                            TechDataList.TechData[j].ClosePrice, TechDataList.TechData[j].Date);
+                        transaction.Buy(DataList.TechData[j].Company.ToString(), DataList.TechData[j].CompanyName,
+                            DataList.TechData[j].ClosePrice, DataList.TechData[j].Date);
 
                         _SimulationVariable.HasBuy = true;
 
                     }
-
+                    
                     if (_SimulationVariable.CanSell && !_SimulationVariable.HasSell)
                     {
-                        transaction.Sell(TechDataList.TechData[j].Company.ToString(), TechDataList.TechData[j].CompanyName,
-                            TechDataList.TechData[j].ClosePrice, TechDataList.TechData[j].Date);
+                        transaction.Sell(DataList.TechData[j].Company.ToString(), DataList.TechData[j].CompanyName,
+                            DataList.TechData[j].ClosePrice, DataList.TechData[j].Date);
 
                         Transaction_List._TransactionList.Add(transaction);
 
