@@ -32,7 +32,7 @@ namespace StockSimulationMVC.Simulation_SimulationStart
             CanBuy = false;
             CanSell = false;
             HasBuy = false;
-            HasSell = false;
+            HasSell = true;
             PreSell = false;
             HaveStockDay = 0;
             Accumulation = 0;

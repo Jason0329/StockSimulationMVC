@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -9,10 +10,20 @@ namespace StockSimulationMVC.Core
     public abstract class LineGraph
     {
         List<double> SelectedData;
+        Dictionary<string, List<double>> LineGraphDictionarny;
+
 
         public LineGraph()
         {
-            SelectedData = new List<double>();
+            SelectedData = new List<double>();            
+        }
+
+        public void AddLineGraphDictionary(string StrategyName , int Days)
+        {
+            MethodInfo method = this.GetType().GetMethod(StrategyName);
+            var Line = method.Invoke(this, new object[] { Days});
+            LineGraphDictionarny.Add(StrategyName, (List < double >) Line);
+
         }
 
         public void SelectData<T>(ref List<T> Data , string SelectDataName)
@@ -46,6 +57,8 @@ namespace StockSimulationMVC.Core
                 MoveAverageData.Add(sum);
                 sum = 0;
             }
+
+
 
             return MoveAverageData;
         }
