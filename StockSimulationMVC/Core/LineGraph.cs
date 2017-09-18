@@ -7,7 +7,7 @@ using System.Web;
 
 namespace StockSimulationMVC.Core
 {
-    public abstract class LineGraph
+    public class LineGraph
     {
         List<double> SelectedData;
         Dictionary<string, List<double>> LineGraphDictionarny;
@@ -15,7 +15,15 @@ namespace StockSimulationMVC.Core
 
         public LineGraph()
         {
-            SelectedData = new List<double>();            
+            SelectedData = new List<double>();
+            LineGraphDictionarny = new Dictionary<string, List<double>>();
+
+            SelectedData.Add(12.2);
+            SelectedData.Add(12.4);
+            SelectedData.Add(12.1);
+            SelectedData.Add(12.5);
+            SelectedData.Add(12.0);
+            SelectedData.Add(12.6);
         }
 
         public void AddLineGraphDictionary(string StrategyName , int Days)
@@ -53,8 +61,7 @@ namespace StockSimulationMVC.Core
                     sum += SelectedData[i - j];
                 }
 
-                SelectedData[i] = sum / AverageDays;
-                MoveAverageData.Add(sum);
+                MoveAverageData.Add(sum / AverageDays);
                 sum = 0;
             }
 
