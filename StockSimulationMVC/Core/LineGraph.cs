@@ -11,7 +11,8 @@ namespace StockSimulationMVC.Core
     {
         List<double> SelectedData;
         Dictionary<string, List<double>> LineGraphDictionarny;
-
+        public delegate int aa();
+        public aa tee;
 
         public LineGraph()
         {
@@ -26,6 +27,24 @@ namespace StockSimulationMVC.Core
             SelectedData.Add(12.6);
         }
 
+        public void LineGraphData<T>(ref List<T> Data, string SelectDataName)
+        {
+            SelectedData.Clear();
+
+            for (int i = 0; i < Data.Count; i++)
+            {
+                PropertyInfo DataProperty = Data[i].GetType().GetProperty(SelectDataName);
+                SelectedData.Add((double)DataProperty.GetValue(Data[i]));
+            }
+        }
+
+        public bool CoditionSatified(string StrategyName1 , string StrategyName2 ,int DaysCounter, bool Isbigger=true)
+        {
+            bool _IsConditionSatified = LineGraphDictionarny[StrategyName1][DaysCounter] > LineGraphDictionarny[StrategyName2][DaysCounter];
+
+            return Isbigger ? _IsConditionSatified : !_IsConditionSatified;
+        }
+
         public void AddLineGraphDictionary(string StrategyName , int Days)
         {
             MethodInfo method = this.GetType().GetMethod(StrategyName);
@@ -33,16 +52,7 @@ namespace StockSimulationMVC.Core
             LineGraphDictionarny.Add(StrategyName, (List < double >) Line);
 
         }
-
-        public void SelectData<T>(ref List<T> Data , string SelectDataName)
-        {
-            for(int i=0; i<Data.Count; i++)
-            {
-                PropertyInfo DataProperty = Data[i].GetType().GetProperty(SelectDataName);
-                SelectedData.Add((double)DataProperty.GetValue(Data[i]));
-            }
-        }
-
+       
         public List<double> MoveAverageValue(int AverageDays)//移動平均數
         {
             double sum = 0;

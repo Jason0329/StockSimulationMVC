@@ -23,6 +23,8 @@ namespace StockSimulationMVC.Simulation_SimulationStart
             //TechDataList = new TechnologicalDataListModel();
             Transaction_List = new TransactionList();
             _strategy = strategy;
+            DataList data = new DataList();
+            
         }
 
         

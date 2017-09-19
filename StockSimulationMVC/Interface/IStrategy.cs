@@ -11,5 +11,6 @@ namespace StockSimulationMVC.Interface
     {
         bool BuyCondition(ref SimulationVariable simulationVariable, ref DataList dataList, int j);
         bool SellCondition(ref SimulationVariable simulationVariable, ref DataList dataList, int j);
+
     }
 }

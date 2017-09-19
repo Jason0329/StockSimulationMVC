@@ -11,15 +11,15 @@ namespace StockSimulationMVC.Models
         public List<TechnologicalDataModel> TechData = new List<TechnologicalDataModel>();
         public List<TaiwanStockIndexModel> TaiwanIndex = new List<TaiwanStockIndexModel>();
         public List<BasicFinancialDataModel> FinancialData = new List<BasicFinancialDataModel>();
-
+        
         public DataList(string Company)
         {
-
+            
         }
 
         public DataList()
         {
-
+            
         }
         public void Initial(string startDate, string EndDate, string company, bool IsOTC = false)
         {

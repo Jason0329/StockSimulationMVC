@@ -221,6 +221,7 @@
     <Compile Include="Simulation-Product\GetSimulationProduct.cs" />
     <Compile Include="Simulation-SimulationStart\SimulationVariable.cs" />
     <Compile Include="Simulation-SimulationStart\SimulationStart.cs" />
+    <Compile Include="Strategy\Strategy-Jason1.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
