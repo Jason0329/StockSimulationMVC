@@ -16,19 +16,20 @@ namespace StockSimulationMVC.Simulation_SimulationStart
         
         TransactionList Transaction_List;
         private IStrategy _strategy;
+       
 
         public SimulationStart(IStrategy strategy )
         {
             Company = new List<string>();
+            Company.Add("2330");
             //TechDataList = new TechnologicalDataListModel();
             Transaction_List = new TransactionList();
             _strategy = strategy;
-            DataList data = new DataList();
+            
             
         }
-
-        
-        int Run()
+      
+        public TransactionList Run()
         {
             //之後平行化處理看看
             for(int i=0; i< Company.Count; i++)
@@ -41,7 +42,7 @@ namespace StockSimulationMVC.Simulation_SimulationStart
                 {
                     if (_SimulationVariable.HasBuy)
                     {
-                        _SimulationVariable.CountDays(DataList.TechData[j].ReturnOnInvestment);// put TechData Return on Investment
+                        _SimulationVariable.CountDays((double)DataList.TechData[j].ReturnOnInvestment);// put TechData Return on Investment
                     }
 
                     #region 看買賣條件
@@ -72,7 +73,7 @@ namespace StockSimulationMVC.Simulation_SimulationStart
 
                 }
             }
-            return 0;
+            return Transaction_List;
         }
 
         private void BuySell_Condition(ref SimulationVariable simulationVariable, ref DataList dataList, int j)

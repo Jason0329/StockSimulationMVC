@@ -14,15 +14,25 @@ namespace StockSimulationMVC.Models
         
         public DataList(string Company)
         {
-            
+            var _TechData = from CompanyData in InitialData.InitialData_TechnologicalData
+                            where CompanyData.Company.Contains(Company)
+                            orderby CompanyData.Date ascending
+                            select CompanyData;
+            TechData = _TechData.ToList();
         }
 
         public DataList()
         {
             
         }
-        public void Initial(string startDate, string EndDate, string company, bool IsOTC = false)
+        public void Initial(//string startDate, string EndDate,
+            string Company, bool IsOTC = false)
         {
+            var _TechData = from CompanyData in InitialData.InitialData_TechnologicalData
+                            where CompanyData.Company.CompareTo(Company) == 0
+                            orderby CompanyData.Date ascending
+                            select CompanyData;
+            TechData = _TechData.ToList();
 
         }
 

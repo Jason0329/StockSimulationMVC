@@ -20,7 +20,11 @@ namespace StockSimulationMVC.Strategy
 
         public bool SellCondition(ref SimulationVariable simulationVariable, ref DataList dataList, int j)
         {
-            throw new NotImplementedException();
+
+            if (dataList.TechData[j].ClosePrice < dataList.TechData[j].OpenPrice)
+                return true;
+
+            return false;
         }
     }
 }

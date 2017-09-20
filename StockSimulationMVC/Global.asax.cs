@@ -3,6 +3,8 @@ using StockSimulationMVC.Core;
 using StockSimulationMVC.Interface;
 using StockSimulationMVC.Models;
 using StockSimulationMVC.ObjectContext;
+using StockSimulationMVC.Simulation_SimulationStart;
+using StockSimulationMVC.Strategy;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -26,11 +28,17 @@ namespace StockSimulationMVC
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
 
-            LineGraph line = new LineGraph();
-            line.AddLineGraphDictionary("MoveAverageValue",3);
-            line.AddLineGraphDictionary("MaxValue", 3);
-            line.AddLineGraphDictionary("MinValue", 3);
-            line.AddLineGraphDictionary("Acculation", 3);
+            InitialData.Initial();
+            Strategy_Jason1 Strategy = new Strategy_Jason1();
+            SimulationStart Start = new SimulationStart(Strategy);
+            Start.Run();
+            
+
+            //LineGraph line = new LineGraph();
+            //line.AddLineGraphDictionary("MoveAverageValue",3);
+            //line.AddLineGraphDictionary("MaxValue", 3);
+            //line.AddLineGraphDictionary("MinValue", 3);
+            //line.AddLineGraphDictionary("Acculation", 3);
 
             //Database.SetInitializer<DataObjectContext>(new DropCreateDatabaseIfModelChanges<DataObjectContext>());
 

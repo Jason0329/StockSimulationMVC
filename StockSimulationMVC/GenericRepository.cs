@@ -5,6 +5,7 @@ using System.Web;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using StockSimulationMVC.Interface;
+using StockSimulationMVC.Models;
 
 namespace StockSimulationMVC
 {
@@ -103,7 +104,14 @@ namespace StockSimulationMVC
 
         public IQueryable<TEntity> GetAll()
         {
+
             return this._context.Set<TEntity>().AsQueryable();
+        }
+
+        public IQueryable<TechnologicalDataModel> GetAllTech()
+        {
+
+            return this._context.Set<TechnologicalDataModel>().Where(m=>m.Company=="2330").AsQueryable();
         }
 
         public void SaveChanges()

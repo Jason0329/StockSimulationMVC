@@ -29,14 +29,9 @@ namespace StockSimulationMVC.Core
             var container = builder.Build();
 
             BasicFinancialDataModel tt = new BasicFinancialDataModel();
-            tt.ID = 2;
-            tt.LongTermLiabilities = 324;
-            tt.OthersLiabilities = 51423;
-            tt.ProfitAfterTax = 325423;
-            tt.Date = DateTime.Now;
-            List<BasicFinancialDataModel> aa;
+
             InitialData_BasicFinancialData = container.Resolve<IRepository<BasicFinancialDataModel>>(new TypedParameter(typeof(DbContext), new DataObjectContext())).GetAll().ToList();
-            InitialData_TechnologicalData = container.Resolve<IRepository<TechnologicalDataModel>>(new TypedParameter(typeof(DbContext), new DataObjectContext())).GetAll().ToList();
+            InitialData_TechnologicalData = container.Resolve<IRepository<TechnologicalDataModel>>(new TypedParameter(typeof(DbContext), new DataObjectContext())).GetAllTech().ToList();
 
         }
     }
