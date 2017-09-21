@@ -12,7 +12,7 @@ namespace StockSimulationMVC.Strategy
     {
         public bool BuyCondition(ref SimulationVariable simulationVariable, ref DataList dataList, int j)
         {
-            if (dataList.TechData[j].ClosePrice > dataList.TechData[j].OpenPrice)
+            if (dataList.CoditionSatified("MoveAverageValue-5", "MoveAverageValue-10",j))
                 return true;
 
             return false;
@@ -21,7 +21,7 @@ namespace StockSimulationMVC.Strategy
         public bool SellCondition(ref SimulationVariable simulationVariable, ref DataList dataList, int j)
         {
 
-            if (dataList.TechData[j].ClosePrice < dataList.TechData[j].OpenPrice)
+            if (dataList.CoditionSatified("MinValue-1", "MinValue-10", j))
                 return true;
 
             return false;

@@ -34,7 +34,10 @@ namespace StockSimulationMVC.Core
             for (int i = 0; i < Data.Count; i++)
             {
                 PropertyInfo DataProperty = Data[i].GetType().GetProperty(SelectDataName);
-                SelectedData.Add((double)DataProperty.GetValue(Data[i]));
+
+                var DataTemp = DataProperty.GetValue(Data[i]).ToString();
+
+                SelectedData.Add(double.Parse(DataTemp));
             }
         }
 
@@ -49,7 +52,7 @@ namespace StockSimulationMVC.Core
         {
             MethodInfo method = this.GetType().GetMethod(StrategyName);
             var Line = method.Invoke(this, new object[] { Days});
-            LineGraphDictionarny.Add(StrategyName, (List < double >) Line);
+            LineGraphDictionarny.Add(StrategyName+"-"+Days, (List < double >) Line);
 
         }
        

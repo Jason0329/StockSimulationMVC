@@ -38,6 +38,16 @@ namespace StockSimulationMVC.Simulation_SimulationStart
                 Transaction transaction = new Transaction() ;
                 DataList DataList = new DataList(Company[i]);
 
+                //////////////////
+                DataList.LineGraphData(ref DataList.TechData, "ClosePrice");
+                DataList.AddLineGraphDictionary("MoveAverageValue", 5);
+                DataList.AddLineGraphDictionary("MoveAverageValue", 10);
+                DataList.AddLineGraphDictionary("MinValue", 1);
+                DataList.AddLineGraphDictionary("MinValue", 10);
+                //////////////////
+
+
+
                 for (int j =0; j < DataList.TechData.Count; j++)
                 {
                     if (_SimulationVariable.HasBuy)
