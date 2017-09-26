@@ -28,7 +28,7 @@ namespace StockSimulationMVC.ObjectContext
         {
             //Configure domain classes using Fluent API here
             modelBuilder.Entity<TechnologicalDataModel>().HasKey<string>(s => s.ID);
-            modelBuilder.Entity<MonthRevenueModel>().HasKey<int>(s => s.ID);
+            //modelBuilder.Entity<MonthRevenueModel>().HasKey<int>(s => s.ID);
             modelBuilder.Entity<BasicFinancialDataModel>().HasKey<int>(s => s.ID);
             modelBuilder.Entity<BarginDataModel>().HasKey<int>(s => s.ID);
 

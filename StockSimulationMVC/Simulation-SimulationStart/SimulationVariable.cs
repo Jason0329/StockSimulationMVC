@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 
 namespace StockSimulationMVC.Simulation_SimulationStart
 {
     public class SimulationVariable
     {
-        public bool CanBuy = false;
-        public bool HasBuy = false;
-        public bool CanSell = false;
-        public bool HasSell = false;
-        public int HaveStockDay = 0;
-        public double Accumulation = 0;
-        public double AccumulationRise = 0;
-        public double AccumulationDrop = 0;
-        public bool PreSell = false;
-        public double startToCountDropAfterPreSell = 0;
-        public int CountDropDay = 0;
-        public int Circumstance = 0;
+        public bool CanBuy { get; set; }
+        public bool HasBuy { get; set; }
+        public bool CanSell { get; set; }
+        public bool HasSell { get; set; }
+        public int HaveStockDay { get; set; }
+        public double Accumulation { get; set; }
+        public double AccumulationRise { get; set; }
+        public double AccumulationDrop { get; set; }
+        public bool PreSell { get; set; }
+        public double startToCountDropAfterPreSell { get; set; }
+        public int CountDropDay { get; set; }
+        public int Circumstance { get; set; }
         public Guid Number;
 
         public SimulationVariable()
@@ -39,6 +40,17 @@ namespace StockSimulationMVC.Simulation_SimulationStart
             AccumulationDrop = 0;
             AccumulationRise = 0;
             startToCountDropAfterPreSell = 0;
+        }
+
+        public bool CoditionSatified(double CompareValue, string CompareProperty, bool IsbiggerOrEqual = true)
+        {
+            PropertyInfo property = this.GetType().GetProperty(CompareProperty);
+            double Value = Convert.ToDouble( property.GetValue(this));
+            double IsBiggerThanZero = Value - CompareValue;
+
+            bool _IsConditionSatified = IsBiggerThanZero >= 0.0;
+
+            return IsbiggerOrEqual ? _IsConditionSatified : !_IsConditionSatified;
         }
 
         public void CountDays(double UnrealizedGains)

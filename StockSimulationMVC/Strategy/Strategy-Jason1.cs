@@ -20,8 +20,8 @@ namespace StockSimulationMVC.Strategy
 
         public bool SellCondition(ref SimulationVariable simulationVariable, ref DataList dataList, int j)
         {
-
-            if (dataList.CoditionSatified("MinValue-1", "MinValue-10", j))
+            bool sim = simulationVariable.CoditionSatified(20, "HaveStockDay");
+            if (sim&& dataList.CoditionSatified("MinValue-1", "MinValue-10", j))
                 return true;
 
             return false;

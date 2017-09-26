@@ -7,24 +7,17 @@ using System.Web;
 
 namespace StockSimulationMVC.Core
 {
-    public class LineGraph
+    public abstract class LineGraph
     {
         List<double> SelectedData;
         Dictionary<string, List<double>> LineGraphDictionarny;
-        public delegate int aa();
-        public aa tee;
+
+
 
         public LineGraph()
         {
             SelectedData = new List<double>();
             LineGraphDictionarny = new Dictionary<string, List<double>>();
-
-            SelectedData.Add(12.2);
-            SelectedData.Add(12.4);
-            SelectedData.Add(12.1);
-            SelectedData.Add(12.5);
-            SelectedData.Add(12.0);
-            SelectedData.Add(12.6);
         }
 
         public void LineGraphData<T>(ref List<T> Data, string SelectDataName)
