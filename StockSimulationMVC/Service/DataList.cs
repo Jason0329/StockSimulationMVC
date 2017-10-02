@@ -11,7 +11,8 @@ namespace StockSimulationMVC.Models
         public List<TechnologicalDataModel> TechData = new List<TechnologicalDataModel>();
         public List<TaiwanStockIndexModel> TaiwanIndex = new List<TaiwanStockIndexModel>();
         public List<BasicFinancialDataModel> FinancialData = new List<BasicFinancialDataModel>();
-        
+        public BasicFinancialReportListModel FinancialList = new BasicFinancialReportListModel();
+
         public DataList(string Company)
         {
             var _TechData = from CompanyData in InitialData.InitialData_TechnologicalData
