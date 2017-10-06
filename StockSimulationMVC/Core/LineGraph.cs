@@ -9,7 +9,7 @@ namespace StockSimulationMVC.Core
 {
     public abstract class LineGraph
     {
-        List<double> SelectedData;
+        List<double> SelectedData;//要畫線圖的股票技術分析資料
         Dictionary<string, List<double>> LineGraphDictionarny;
 
 
@@ -148,5 +148,76 @@ namespace StockSimulationMVC.Core
 
             return Accul;
         }
+
+        public List<double> BollingerBandsUp(int Days, double BollingerParameter = 2.0)
+        {
+            List<double> StandardDeviationData = StandardDeviation(Days);
+            List<double> MoveAverageData = MoveAverageValue(Days);
+            List<double> BollingerBandsUpBand = new List<double>();
+
+            for (int i = 0; i < Days; i++)
+            {
+                StandardDeviationData.Add(0);
+            }
+
+            for (int i = Days; i < SelectedData.Count; i++)
+            {
+                BollingerBandsUpBand.Add(MoveAverageData[i] + BollingerParameter * BollingerBandsUpBand[i]);
+            }
+
+            return BollingerBandsUpBand;
+        }
+        public List<double> BollingerBandsDown(int Days , double BollingerParameter = 2.0)
+        {
+            List<double> StandardDeviationData = StandardDeviation(Days);
+            List<double> MoveAverageData = MoveAverageValue(Days);
+            List<double> BollingerBandsDownBand = new List<double>();
+
+            for (int i = 0; i < Days; i++)
+            {
+                StandardDeviationData.Add(0);
+            }
+
+            for (int i = Days; i < SelectedData.Count; i++)
+            {
+                BollingerBandsDownBand.Add(MoveAverageData[i] - BollingerParameter * BollingerBandsDownBand[i]);
+            }
+
+            return BollingerBandsDownBand;
+        }
+        private List<double> StandardDeviation(int Days)
+        {
+            double sum = 0;
+            double SquareSum = 0;
+            double Standard_Deviation = 0;
+
+            List<double> StandardDeviationData = new List<double>();
+
+            for (int i = 0; i < Days; i++)
+            {
+                StandardDeviationData.Add(0);
+            }
+
+            for (int i = Days; i < SelectedData.Count; i++)
+            {
+
+                for (int j = 0; j < Days; j++)
+                {
+                    sum += SelectedData[i - j];
+                    SquareSum += SelectedData[i - j] * SelectedData[i - j];
+                }
+
+                Standard_Deviation = Math.Sqrt((SquareSum - (sum * sum)));
+
+                StandardDeviationData.Add(Standard_Deviation);
+                sum = 0;
+                SquareSum = 0;
+            }
+
+
+
+            return StandardDeviationData;
+        }
+       
     }
 }

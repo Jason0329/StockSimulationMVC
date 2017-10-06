@@ -47,7 +47,7 @@ namespace StockSimulationMVC
             //    .InstancePerLifetimeScope();
 
             //var container = builder.Build();
-
+            
             //BasicFinancialDataModel tt = new BasicFinancialDataModel();
             //tt.ID = 5;
             //tt.LongTermLiabilities = 324;

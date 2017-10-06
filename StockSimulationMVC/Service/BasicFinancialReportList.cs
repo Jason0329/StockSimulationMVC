@@ -1,18 +1,36 @@
-﻿using System;
+﻿using StockSimulationMVC.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 
 namespace StockSimulationMVC.Models
 {
     public class BasicFinancialReportListModel
     {
-        public List<BasicFinancialDataModel> DataList = new List<BasicFinancialDataModel>();
+        public List<BasicFinancialDataModel> FinancialDataList = new List<BasicFinancialDataModel>();
         public List<MonthRevenueModel> RevenueList = new List<MonthRevenueModel>();
         public int RevenueInt = -1;
         public int BasicFinancialInt = -1;
 
         #region Initial 
+        public void Initial(int Company)
+        {
+            var FinancialData = from CompanyData in InitialData.InitialData_BasicFinancialData
+                                where CompanyData.Company == Company
+                                orderby CompanyData.Date ascending
+                                select CompanyData;
+
+            FinancialDataList = FinancialData.ToList();
+
+            var MonthlyData = from CompanyData in InitialData.InitialData_MonthRevenueData
+                                where CompanyData.Company == Company
+                                orderby CompanyData.Date ascending
+                                select CompanyData;
+            RevenueList = MonthlyData.ToList();
+
+        }
                 //public void Initial(string startDate, string EndDate, int company, bool IsOTC = false)
                 //{
                 //    DataList.Clear();
@@ -74,9 +92,9 @@ namespace StockSimulationMVC.Models
             #region 第一季
             if (dt.Year >= 2008 && dt.Year <= 2012 && dt.Month > 4 && dt.Month < 9)
             {
-                for (int i = 0; i < DataList.Count; i++)
+                for (int i = 0; i < FinancialDataList.Count; i++)
                 {
-                    if (DataList[i].Date.Year == dt.Year && DataList[i].Date.Month == 3)
+                    if (FinancialDataList[i].Date.Year == dt.Year && FinancialDataList[i].Date.Month == 3)
                     {
                         BasicFinancialInt = i;
                         break;
@@ -86,9 +104,9 @@ namespace StockSimulationMVC.Models
             }
             else if (dt.Year > 2012 && (dt.Month > 4 && dt.Month < 8 || dt.Month == 8 && dt.Day <= 15))
             {
-                for (int i = 0; i < DataList.Count; i++)
+                for (int i = 0; i < FinancialDataList.Count; i++)
                 {
-                    if (DataList[i].Date.Year == dt.Year && DataList[i].Date.Month == 3)
+                    if (FinancialDataList[i].Date.Year == dt.Year && FinancialDataList[i].Date.Month == 3)
                     {
                         BasicFinancialInt = i;
                         break;
@@ -101,9 +119,9 @@ namespace StockSimulationMVC.Models
             #region 第二季
             if (dt.Year <= 2012 && dt.Year >= 2008 && dt.Month > 8 && dt.Month < 11)
             {
-                for (int i = 0; i < DataList.Count; i++)
+                for (int i = 0; i < FinancialDataList.Count; i++)
                 {
-                    if (DataList[i].Date.Year == dt.Year && DataList[i].Date.Month == 6)
+                    if (FinancialDataList[i].Date.Year == dt.Year && FinancialDataList[i].Date.Month == 6)
                     {
                         BasicFinancialInt = i;
                         break;
@@ -114,9 +132,9 @@ namespace StockSimulationMVC.Models
                 (dt.Month == 8 && dt.Day > 15)
                 || (dt.Month == 11 && dt.Day <= 15)))
             {
-                for (int i = 0; i < DataList.Count; i++)
+                for (int i = 0; i < FinancialDataList.Count; i++)
                 {
-                    if (DataList[i].Date.Year == dt.Year && DataList[i].Date.Month == 6)
+                    if (FinancialDataList[i].Date.Year == dt.Year && FinancialDataList[i].Date.Month == 6)
                     {
                         BasicFinancialInt = i;
                         break;
@@ -127,9 +145,9 @@ namespace StockSimulationMVC.Models
             {
                 if (dt.Month > 8)
                 {
-                    for (int i = 0; i < DataList.Count; i++)
+                    for (int i = 0; i < FinancialDataList.Count; i++)
                     {
-                        if (DataList[i].Date.Year == dt.Year && DataList[i].Date.Month == 6)
+                        if (FinancialDataList[i].Date.Year == dt.Year && FinancialDataList[i].Date.Month == 6)
                         {
                             BasicFinancialInt = i;
                             break;
@@ -138,9 +156,9 @@ namespace StockSimulationMVC.Models
                 }
                 else if (dt.Month <= 3)
                 {
-                    for (int i = 0; i < DataList.Count; i++)
+                    for (int i = 0; i < FinancialDataList.Count; i++)
                     {
-                        if (DataList[i].Date.Year == dt.Year - 1 && DataList[i].Date.Month == 6)
+                        if (FinancialDataList[i].Date.Year == dt.Year - 1 && FinancialDataList[i].Date.Month == 6)
                         {
                             BasicFinancialInt = i;
                             break;
@@ -155,16 +173,16 @@ namespace StockSimulationMVC.Models
 
                 if (dt.Year > 2012 && ((dt.Month == 11 && dt.Day >= 15) || dt.Month == 12 || dt.Month < 4))
                 {
-                    for (int i = 0; i < DataList.Count; i++)
+                    for (int i = 0; i < FinancialDataList.Count; i++)
                     {
-                        if (DataList[i].Date.Year == dt.Year && DataList[i].Date.Month == 9)
+                        if (FinancialDataList[i].Date.Year == dt.Year && FinancialDataList[i].Date.Month == 9)
                         {
                             BasicFinancialInt = i;
                             break;
                         }
                         else if (dt.Month <= 3)
                         {
-                            if (DataList[i].Date.Year == dt.Year - 1 && DataList[i].Date.Month == 9)
+                            if (FinancialDataList[i].Date.Year == dt.Year - 1 && FinancialDataList[i].Date.Month == 9)
                             {
                                 BasicFinancialInt = i;
                                 break;
@@ -174,11 +192,11 @@ namespace StockSimulationMVC.Models
                 }
                 else if (dt.Year <= 2012 && dt.Year >= 2008)
                 {
-                    for (int i = 0; i < DataList.Count; i++)
+                    for (int i = 0; i < FinancialDataList.Count; i++)
                     {
                         if (dt.Month >= 11)
                         {
-                            if (DataList[i].Date.Year == dt.Year && DataList[i].Date.Month == 9)
+                            if (FinancialDataList[i].Date.Year == dt.Year && FinancialDataList[i].Date.Month == 9)
                             {
                                 BasicFinancialInt = i;
                                 break;
@@ -186,7 +204,7 @@ namespace StockSimulationMVC.Models
                         }
                         else if (dt.Month <= 3)
                         {
-                            if (DataList[i].Date.Year == dt.Year - 1 && DataList[i].Date.Month == 9)
+                            if (FinancialDataList[i].Date.Year == dt.Year - 1 && FinancialDataList[i].Date.Month == 9)
                             {
                                 BasicFinancialInt = i;
                                 break;
@@ -202,9 +220,9 @@ namespace StockSimulationMVC.Models
             {
                 if (dt.Month == 4)
                 {
-                    for (int i = 0; i < DataList.Count; i++)
+                    for (int i = 0; i < FinancialDataList.Count; i++)
                     {
-                        if (DataList[i].Date.Year == dt.Year - 1 && DataList[i].Date.Month == 12)
+                        if (FinancialDataList[i].Date.Year == dt.Year - 1 && FinancialDataList[i].Date.Month == 12)
                         {
                             BasicFinancialInt = i;
                             break;
@@ -216,9 +234,9 @@ namespace StockSimulationMVC.Models
             {
                 if (dt.Month == 4 || (dt.Month == 5 && dt.Day < 15))
                 {
-                    for (int i = 0; i < DataList.Count; i++)
+                    for (int i = 0; i < FinancialDataList.Count; i++)
                     {
-                        if (DataList[i].Date.Year == dt.Year - 1 && DataList[i].Date.Month == 12)
+                        if (FinancialDataList[i].Date.Year == dt.Year - 1 && FinancialDataList[i].Date.Month == 12)
                         {
                             BasicFinancialInt = i;
                             break;
@@ -230,9 +248,9 @@ namespace StockSimulationMVC.Models
             {
                 if (dt.Month >= 4)
                 {
-                    for (int i = 0; i < DataList.Count; i++)
+                    for (int i = 0; i < FinancialDataList.Count; i++)
                     {
-                        if (DataList[i].Date.Year == dt.Year - 1 && DataList[i].Date.Month == 12)
+                        if (FinancialDataList[i].Date.Year == dt.Year - 1 && FinancialDataList[i].Date.Month == 12)
                         {
                             BasicFinancialInt = i;
                             break;
@@ -241,9 +259,9 @@ namespace StockSimulationMVC.Models
                 }
                 else if (dt.Month <= 8)
                 {
-                    for (int i = 0; i < DataList.Count; i++)
+                    for (int i = 0; i < FinancialDataList.Count; i++)
                     {
-                        if (DataList[i].Date.Year == dt.Year && DataList[i].Date.Month == 12)
+                        if (FinancialDataList[i].Date.Year == dt.Year && FinancialDataList[i].Date.Month == 12)
                         {
                             BasicFinancialInt = i;
                             break;
@@ -255,9 +273,9 @@ namespace StockSimulationMVC.Models
             {
                 if (dt.Month < 4)
                 {
-                    for (int i = 0; i < DataList.Count; i++)
+                    for (int i = 0; i < FinancialDataList.Count; i++)
                     {
-                        if (DataList[i].Date.Year == dt.Year - 1 && DataList[i].Date.Month == 12)
+                        if (FinancialDataList[i].Date.Year == dt.Year - 1 && FinancialDataList[i].Date.Month == 12)
                         {
                             BasicFinancialInt = i;
                             break;
@@ -266,9 +284,9 @@ namespace StockSimulationMVC.Models
                 }
                 else
                 {
-                    for (int i = 0; i < DataList.Count; i++)
+                    for (int i = 0; i < FinancialDataList.Count; i++)
                     {
-                        if (DataList[i].Date.Year == dt.Year && DataList[i].Date.Month == 12)
+                        if (FinancialDataList[i].Date.Year == dt.Year && FinancialDataList[i].Date.Month == 12)
                         {
                             BasicFinancialInt = i;
                             break;
@@ -321,5 +339,56 @@ namespace StockSimulationMVC.Models
             }
         }
         #endregion
+
+        public bool ComparerFinancial(string CompareName, double CompareValue, int CompareSeasens , bool CompareValueIsBigger=false)
+        {
+            if (BasicFinancialInt - CompareSeasens < 0 || BasicFinancialInt > FinancialDataList.Count) return false;
+
+            double AverageValues = 0;
+
+            for (int i = BasicFinancialInt; i > BasicFinancialInt - CompareSeasens; i--)
+            {
+                PropertyInfo property = FinancialDataList[i].GetType().GetProperty(CompareName);
+                var Value = property.GetValue(FinancialDataList[i]);
+                AverageValues += (double)Value;
+            }
+
+            AverageValues = AverageValues / CompareSeasens;
+
+            if(CompareValueIsBigger)
+            {
+                return CompareValue > AverageValues;
+            }
+            else
+            {
+                return CompareValue < AverageValues;
+            }
+           
+        }
+        public bool ComparerMonthlyRevenue(string CompareName, double CompareValue, int CompareSeasens, bool CompareValueIsBigger = true)
+        {
+            if (RevenueInt < 0 || RevenueInt > RevenueList.Count) return false;
+
+            double AverageValues = 0;
+
+            for (int i = RevenueInt; i > RevenueInt - CompareSeasens; i--)
+            {
+                PropertyInfo property = RevenueList[RevenueInt].GetType().GetProperty(CompareName);
+                var Value = property.GetValue(RevenueList);
+                AverageValues += (double)Value;
+            }
+
+            AverageValues = AverageValues / CompareSeasens;
+
+            if (CompareValueIsBigger)
+            {
+                return CompareValue > AverageValues;
+            }
+            else
+            {
+                return CompareValue < AverageValues;
+            }
+
+        }
     }
 }

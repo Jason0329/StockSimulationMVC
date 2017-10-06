@@ -37,6 +37,7 @@ namespace StockSimulationMVC.Simulation_SimulationStart
                 SimulationVariable _SimulationVariable = new SimulationVariable();
                 Transaction transaction = new Transaction() ;
                 DataList DataList = new DataList(Company[i]);
+                BasicFinancialReportListModel BasicFinancialReportData = new BasicFinancialReportListModel();
 
                 //////////////////
                 DataList.LineGraphData(ref DataList.TechData, "ClosePrice");
@@ -44,19 +45,26 @@ namespace StockSimulationMVC.Simulation_SimulationStart
                 DataList.AddLineGraphDictionary("MoveAverageValue", 10);
                 DataList.AddLineGraphDictionary("MinValue", 1);
                 DataList.AddLineGraphDictionary("MinValue", 10);
+
+                BasicFinancialReportData.Initial(int.Parse(DataList.TechData[i].Company.Trim()));
                 //////////////////
 
 
 
                 for (int j =0; j < DataList.TechData.Count; j++)
                 {
+                    //////////////////
+                    BasicFinancialReportData.InitialDate(DataList.TechData[j].Date);
+                    //////////////////
+
+
                     if (_SimulationVariable.HasBuy)
                     {
                         _SimulationVariable.CountDays((double)DataList.TechData[j].ReturnOnInvestment);// put TechData Return on Investment
                     }
 
                     #region 看買賣條件
-                    BuySell_Condition(ref _SimulationVariable,ref DataList , j);
+                    BuySell_Condition(ref _SimulationVariable,ref DataList, ref BasicFinancialReportData, j);
                     #endregion
 
                     if (_SimulationVariable.CanBuy && !_SimulationVariable.HasBuy)
@@ -86,14 +94,14 @@ namespace StockSimulationMVC.Simulation_SimulationStart
             return Transaction_List;
         }
 
-        private void BuySell_Condition(ref SimulationVariable simulationVariable, ref DataList dataList, int j)
+        private void BuySell_Condition(ref SimulationVariable simulationVariable, ref DataList dataList,ref BasicFinancialReportListModel BasicFinancialData, int j)
         {
-            if (!simulationVariable.HasBuy && _strategy.BuyCondition(ref simulationVariable, ref dataList, j))
+            if (!simulationVariable.HasBuy && _strategy.BuyCondition(ref simulationVariable, ref dataList, ref BasicFinancialData, j))
             {
                 simulationVariable.CanBuy = true;
             }
 
-            if (simulationVariable.HasBuy && _strategy.SellCondition(ref simulationVariable, ref dataList, j))
+            if (simulationVariable.HasBuy && _strategy.SellCondition(ref simulationVariable, ref dataList, ref BasicFinancialData, j))
             {
                 simulationVariable.CanBuy = false;
             }

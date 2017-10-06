@@ -9,8 +9,8 @@ namespace StockSimulationMVC.Interface
 {
     public interface IStrategy
     {
-        bool BuyCondition(ref SimulationVariable simulationVariable, ref DataList dataList, int j);
-        bool SellCondition(ref SimulationVariable simulationVariable, ref DataList dataList, int j);
+        bool BuyCondition(ref SimulationVariable simulationVariable, ref DataList dataList, ref BasicFinancialReportListModel financialdata, int j);
+        bool SellCondition(ref SimulationVariable simulationVariable, ref DataList dataList, ref BasicFinancialReportListModel financialdata, int j);
 
     }
 }
