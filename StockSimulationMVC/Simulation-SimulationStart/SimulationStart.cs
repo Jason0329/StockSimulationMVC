@@ -21,7 +21,7 @@ namespace StockSimulationMVC.Simulation_SimulationStart
         public SimulationStart(IStrategy strategy )
         {
             Company = new List<string>();
-            Company.Add("2330");
+            Company.Add("3481");
             //TechDataList = new TechnologicalDataListModel();
             Transaction_List = new TransactionList();
             _strategy = strategy;
@@ -45,6 +45,9 @@ namespace StockSimulationMVC.Simulation_SimulationStart
                 DataList.AddLineGraphDictionary("MoveAverageValue", 10);
                 DataList.AddLineGraphDictionary("MinValue", 1);
                 DataList.AddLineGraphDictionary("MinValue", 10);
+                DataList.AddLineGraphDictionary("BollingerBandsDown", 5 , 1.5);
+                DataList.AddLineGraphDictionary("MoveAverageValue", 1);
+
 
                 BasicFinancialReportData.Initial(int.Parse(DataList.TechData[i].Company.Trim()));
                 //////////////////
@@ -60,7 +63,7 @@ namespace StockSimulationMVC.Simulation_SimulationStart
 
                     if (_SimulationVariable.HasBuy)
                     {
-                        _SimulationVariable.CountDays((double)DataList.TechData[j].ReturnOnInvestment);// put TechData Return on Investment
+                        _SimulationVariable.CountDays(DataList.TechData[j]);// put TechData Return on Investment
                     }
 
                     #region 看買賣條件
@@ -74,7 +77,7 @@ namespace StockSimulationMVC.Simulation_SimulationStart
                             DataList.TechData[j].ClosePrice, DataList.TechData[j].Date);
 
                         _SimulationVariable.HasBuy = true;
-                        
+                        _SimulationVariable.Buy = DataList.TechData[j];
 
                     }
                     

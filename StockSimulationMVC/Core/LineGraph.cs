@@ -41,11 +41,24 @@ namespace StockSimulationMVC.Core
             return Isbigger ? _IsConditionSatified : !_IsConditionSatified;
         }
 
-        public void AddLineGraphDictionary(string StrategyName , int Days)
+        public void AddLineGraphDictionary(string StrategyName , int Days , double BollingerParameter = 2.0 )
         {
             MethodInfo method = this.GetType().GetMethod(StrategyName);
-            var Line = method.Invoke(this, new object[] { Days});
-            LineGraphDictionarny.Add(StrategyName+"-"+Days, (List < double >) Line);
+
+            switch(StrategyName)
+            {
+                case "BollingerBandsDown":
+                case "BollingerBandsUp":
+                    var BollingerLine = method.Invoke(this, new object[] { Days, BollingerParameter });
+                    LineGraphDictionarny.Add(StrategyName + "-" + Days, (List<double>)BollingerLine);
+                    break;
+
+                default:
+                    var DefaultLine = method.Invoke(this, new object[] { Days });
+                    LineGraphDictionarny.Add(StrategyName + "-" + Days, (List<double>)DefaultLine);
+                    break;
+            }
+  
 
         }
        
@@ -148,7 +161,6 @@ namespace StockSimulationMVC.Core
 
             return Accul;
         }
-
         public List<double> BollingerBandsUp(int Days, double BollingerParameter = 2.0)
         {
             List<double> StandardDeviationData = StandardDeviation(Days);
@@ -157,12 +169,12 @@ namespace StockSimulationMVC.Core
 
             for (int i = 0; i < Days; i++)
             {
-                StandardDeviationData.Add(0);
+                BollingerBandsUpBand.Add(0);
             }
 
             for (int i = Days; i < SelectedData.Count; i++)
             {
-                BollingerBandsUpBand.Add(MoveAverageData[i] + BollingerParameter * BollingerBandsUpBand[i]);
+                BollingerBandsUpBand.Add(MoveAverageData[i] + BollingerParameter * StandardDeviationData[i]);
             }
 
             return BollingerBandsUpBand;
@@ -175,22 +187,22 @@ namespace StockSimulationMVC.Core
 
             for (int i = 0; i < Days; i++)
             {
-                StandardDeviationData.Add(0);
+                BollingerBandsDownBand.Add(0);
             }
 
             for (int i = Days; i < SelectedData.Count; i++)
             {
-                BollingerBandsDownBand.Add(MoveAverageData[i] - BollingerParameter * BollingerBandsDownBand[i]);
+                BollingerBandsDownBand.Add(MoveAverageData[i] - BollingerParameter * StandardDeviationData[i]);
             }
 
             return BollingerBandsDownBand;
         }
         private List<double> StandardDeviation(int Days)
         {
-            double sum = 0;
             double SquareSum = 0;
             double Standard_Deviation = 0;
 
+            List<double> AverageValue = MoveAverageValue(Days);
             List<double> StandardDeviationData = new List<double>();
 
             for (int i = 0; i < Days; i++)
@@ -203,14 +215,15 @@ namespace StockSimulationMVC.Core
 
                 for (int j = 0; j < Days; j++)
                 {
-                    sum += SelectedData[i - j];
                     SquareSum += SelectedData[i - j] * SelectedData[i - j];
                 }
 
-                Standard_Deviation = Math.Sqrt((SquareSum - (sum * sum)));
+                SquareSum = SquareSum / Days;
+
+                Standard_Deviation = Math.Sqrt((SquareSum - (AverageValue[i] * AverageValue[i])));
 
                 StandardDeviationData.Add(Standard_Deviation);
-                sum = 0;
+                
                 SquareSum = 0;
             }
 

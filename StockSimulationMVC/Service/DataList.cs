@@ -16,7 +16,7 @@ namespace StockSimulationMVC.Models
         public DataList(string Company)
         {
             var _TechData = from CompanyData in InitialData.InitialData_TechnologicalData
-                            where CompanyData.Company.Contains(Company)
+                            where CompanyData.Company.Contains(Company) && CompanyData.Date.CompareTo(new DateTime(2011,07,01))>0
                             orderby CompanyData.Date ascending
                             select CompanyData;
             TechData = _TechData.ToList();

@@ -28,10 +28,10 @@ namespace StockSimulationMVC
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
 
-            InitialData.Initial();
-            Strategy_Jason1 Strategy = new Strategy_Jason1();
-            SimulationStart Start = new SimulationStart(Strategy);
-            Start.Run();
+            //InitialData.Initial();
+            //Strategy_Jason1 Strategy = new Strategy_Jason1();
+            //SimulationStart Start = new SimulationStart(Strategy);
+            //Start.Run();
             
 
             //LineGraph line = new LineGraph();

@@ -9,6 +9,7 @@ namespace StockSimulationMVC.Models
     {
         public Decimal Revenue { get; set; }
         public Decimal RateOfReturn { get; set; }
+        public Decimal RateOfReturnYearly { get; set; }
         public double HoldDays { get; set; }
     }
 }

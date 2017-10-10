@@ -111,7 +111,7 @@ namespace StockSimulationMVC
         public IQueryable<TechnologicalDataModel> GetAllTech()
         {
 
-            return this._context.Set<TechnologicalDataModel>().Where(m=>m.Company=="2330").AsQueryable();
+            return this._context.Set<TechnologicalDataModel>().Where(m=>m.Company== "3481").AsQueryable();
         }
 
         public void SaveChanges()

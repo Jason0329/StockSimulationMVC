@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StockSimulationMVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -12,6 +13,13 @@ namespace StockSimulationMVC.Simulation_SimulationStart
         public bool HasBuy { get; set; }
         public bool CanSell { get; set; }
         public bool HasSell { get; set; }
+        public TechnologicalDataModel Buy { get; set; }
+        TechnologicalDataModel CurrentlyTechData { get; set; }
+        public decimal MoveStopLoss { get; set; }
+        public double? MoveStopLossPercentage { get; set; }
+        decimal StopLossCalPrice { get; set; }
+        double? StopLossCalPricePercentage { get; set; }
+        public int HaveStockDayContainHoliday { get; set; }
         public int HaveStockDay { get; set; }
         public double Accumulation { get; set; }
         public double AccumulationRise { get; set; }
@@ -20,7 +28,9 @@ namespace StockSimulationMVC.Simulation_SimulationStart
         public double startToCountDropAfterPreSell { get; set; }
         public int CountDropDay { get; set; }
         public int Circumstance { get; set; }
-        public Guid Number;
+        //public double MoveStopLossPercnetage { get; set; }
+        //public double MoveStopLoss { get; set; }
+        public Guid Number { get; }
 
         public SimulationVariable()
         {
@@ -40,9 +50,10 @@ namespace StockSimulationMVC.Simulation_SimulationStart
             AccumulationDrop = 0;
             AccumulationRise = 0;
             startToCountDropAfterPreSell = 0;
+
         }
 
-        public bool CoditionSatified(double CompareValue, string CompareProperty, bool IsbiggerOrEqual = true)
+        public bool ConditionSatified(double CompareValue, string CompareProperty, bool IsbiggerOrEqual = true)
         {
             PropertyInfo property = this.GetType().GetProperty(CompareProperty);
             double Value = Convert.ToDouble( property.GetValue(this));
@@ -53,15 +64,51 @@ namespace StockSimulationMVC.Simulation_SimulationStart
             return IsbiggerOrEqual ? _IsConditionSatified : !_IsConditionSatified;
         }
 
-        public void CountDays(double UnrealizedGains)
+       
+        public bool ConditionSatifiedMoveStopLoss(string StopLossType)
+        {
+            switch(StopLossType)
+            {
+                case "MoveStopLoss":
+                    if (CurrentlyTechData.ClosePrice < StopLossCalPrice - MoveStopLoss)
+                        return true;
+                    break;
+                case "MoveStopLossPercentage":
+                    if (Accumulation < (double)(StopLossCalPricePercentage - MoveStopLossPercentage))
+                        return true;
+                    break;
+            }
+            
+            return false;
+        }
+
+        public void CountDays(TechnologicalDataModel TechData)//double UnrealizedGains , decimal ClosePrice)
         {
             HaveStockDay++;
-            Accumulation += UnrealizedGains;
+            HaveStockDayContainHoliday = (TechData.Date-Buy.Date).Days;
+            Accumulation += (double)TechData.ReturnOnInvestment;// UnrealizedGains;
+            CurrentlyTechData = TechData;
 
-            if (UnrealizedGains > 0)
-                AccumulationRise += UnrealizedGains;
-            else if (UnrealizedGains < 0)
-                AccumulationDrop += UnrealizedGains;
+
+            if ((double)TechData.ReturnOnInvestment > 0)
+                AccumulationRise += (double)TechData.ReturnOnInvestment;
+            else if ((double)TechData.ReturnOnInvestment < 0)
+                AccumulationDrop += (double)TechData.ReturnOnInvestment;
+
+            if (HaveStockDay == 1)
+            {
+                StopLossCalPrice = Buy.ClosePrice;
+                StopLossCalPricePercentage = 0;
+            }
+            if (TechData.ClosePrice > StopLossCalPrice)
+            {
+                StopLossCalPrice = TechData.ClosePrice;
+            }
+            if(TechData.ReturnOnInvestment > StopLossCalPricePercentage)
+            {
+                StopLossCalPricePercentage = TechData.ReturnOnInvestment;
+            }
+                
         }
     }
 }

@@ -365,7 +365,7 @@ namespace StockSimulationMVC.Models
             }
            
         }
-        public bool ComparerMonthlyRevenue(string CompareName, double CompareValue, int CompareSeasens, bool CompareValueIsBigger = true)
+        public bool ComparerMonthlyRevenue(string CompareName, double CompareValue, int CompareSeasens, bool CompareValueIsBigger = false)
         {
             if (RevenueInt < 0 || RevenueInt > RevenueList.Count) return false;
 
@@ -374,7 +374,7 @@ namespace StockSimulationMVC.Models
             for (int i = RevenueInt; i > RevenueInt - CompareSeasens; i--)
             {
                 PropertyInfo property = RevenueList[RevenueInt].GetType().GetProperty(CompareName);
-                var Value = property.GetValue(RevenueList);
+                var Value = property.GetValue(RevenueList[RevenueInt]);
                 AverageValues += (double)Value;
             }
 

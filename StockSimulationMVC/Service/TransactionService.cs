@@ -13,6 +13,7 @@ namespace StockSimulationMVC.Models
 
         public BuyModel BuyDetail { get { return BuyInstrument; } }
         public SellModel SellDetail { get { return SellInstrument; } }
+        public TransactionResultModel Result { get { return BuySellResult; } }
 
         public void Buy(string Number , string Name , Decimal Price , DateTime datetime , int share=1)
         {
@@ -54,8 +55,9 @@ namespace StockSimulationMVC.Models
         {
             BuySellResult = new TransactionResultModel();
             BuySellResult.Revenue = SellInstrument.Price - BuyInstrument.Price;
-            BuySellResult.RateOfReturn = (SellInstrument.Price - BuyInstrument.Price) / BuyInstrument.Price;
+            BuySellResult.RateOfReturn = System.Math.Round((SellInstrument.Price - BuyInstrument.Price) / BuyInstrument.Price * 100,2);
             BuySellResult.HoldDays = SellInstrument.Date.Subtract(  BuyInstrument.Date).TotalDays;
+            BuySellResult.RateOfReturnYearly = System.Math.Round((SellInstrument.Price - BuyInstrument.Price) / BuyInstrument.Price * (Decimal)(365 / BuySellResult.HoldDays) * 100, 2);
         }
     }
 }

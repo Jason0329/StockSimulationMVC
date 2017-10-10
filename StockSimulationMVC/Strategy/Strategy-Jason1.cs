@@ -12,7 +12,9 @@ namespace StockSimulationMVC.Strategy
     {
         public bool BuyCondition(ref SimulationVariable simulationVariable, ref DataList dataList, ref BasicFinancialReportListModel financialdata, int j)
         {
-            if (dataList.CoditionSatified("MoveAverageValue-5", "MoveAverageValue-10",j) && financialdata.ComparerFinancial("QCashFlowPerShare",3,4))
+            bool fin = financialdata.ComparerFinancial("QEarningPerShare", 1, 2);
+            bool fin1 = financialdata.ComparerMonthlyRevenue("MoMPercentage_MonthlySale", 10,1,false);
+            if (fin1 )//&& dataList.CoditionSatified("MoveAverageValue-1", "MoveAverageValue-10",j))//&& dataList.CoditionSatified("BollingerBandsDown-5", "MoveAverageValue-1", j) && financialdata.ComparerFinancial("QCashFlowPerShare",3,4))
                 return true;
 
             return false;
@@ -20,8 +22,11 @@ namespace StockSimulationMVC.Strategy
 
         public bool SellCondition(ref SimulationVariable simulationVariable, ref DataList dataList, ref BasicFinancialReportListModel financialdata, int j)
         {
-            bool sim = simulationVariable.CoditionSatified(20, "HaveStockDay");
-            if (sim&& dataList.CoditionSatified("MinValue-1", "MinValue-10", j))
+            bool sim = simulationVariable.ConditionSatified(3, "HaveStockDayContainHoliday");
+            simulationVariable.MoveStopLoss = 3;
+            simulationVariable.MoveStopLossPercentage = 10;
+            bool fin = financialdata.ComparerFinancial("QEarningPerShare", 0, 1 , false);
+            if (sim ||  simulationVariable.ConditionSatifiedMoveStopLoss("MoveStopLossPercentage"))// || dataList.CoditionSatified("MinValue-1", "MinValue-10", j))
                 return true;
 
             return false;
