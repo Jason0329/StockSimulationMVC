@@ -19,6 +19,8 @@ namespace StockSimulationMVC.Controllers
             Strategy_Jason1 Strategy = new Strategy_Jason1();
             SimulationStart Start = new SimulationStart(Strategy);
             TransactionList Data =  Start.Run();
+            Data._TransactionList.Sort();
+            Data.TransactionStatisticResult();
             return View(Data);
         }
     }

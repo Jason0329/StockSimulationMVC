@@ -12,7 +12,7 @@ namespace StockSimulationMVC.Simulation_SimulationStart
     public class SimulationStart
     {
         readonly int SimualationDays = 1000;
-        List<string> Company;//還未初始化
+        List<double> Company;//還未初始化
         
         TransactionList Transaction_List;
         private IStrategy _strategy;
@@ -20,8 +20,28 @@ namespace StockSimulationMVC.Simulation_SimulationStart
 
         public SimulationStart(IStrategy strategy )
         {
-            Company = new List<string>();
-            Company.Add("3481");
+            Company = new List<double>();
+            var CoData = from _company in InitialData.InitialData_CompanyData
+                         where _company.ID ==2330
+                         select _company.ID;
+
+            //foreach(var data in CoData)
+            //{
+            //    Company.Add(data)
+            //}
+            Company = (List<double>)CoData.ToList();
+
+            //for(int i=0; i<InitialData.InitialData_TechnologicalData.Count; i++)
+            //{
+            //    try
+            //    {
+            //        int.Parse(InitialData.InitialData_TechnologicalData[i].Company);
+            //        Company.Add(InitialData.InitialData_TechnologicalData[i].Company, InitialData.InitialData_TechnologicalData[i].Company);
+            //    }
+            //    catch (Exception ee){ }
+            //}
+
+            //Company.Add("3481");
             //TechDataList = new TechnologicalDataListModel();
             Transaction_List = new TransactionList();
             _strategy = strategy;
@@ -36,7 +56,7 @@ namespace StockSimulationMVC.Simulation_SimulationStart
             {               
                 SimulationVariable _SimulationVariable = new SimulationVariable();
                 Transaction transaction = new Transaction() ;
-                DataList DataList = new DataList(Company[i]);
+                DataList DataList = new DataList(Company[i].ToString());
                 BasicFinancialReportListModel BasicFinancialReportData = new BasicFinancialReportListModel();
 
                 //////////////////
@@ -48,8 +68,9 @@ namespace StockSimulationMVC.Simulation_SimulationStart
                 DataList.AddLineGraphDictionary("BollingerBandsDown", 5 , 1.5);
                 DataList.AddLineGraphDictionary("MoveAverageValue", 1);
 
+                if (DataList.TechData.Count == 0) continue;
 
-                BasicFinancialReportData.Initial(int.Parse(DataList.TechData[i].Company.Trim()));
+                BasicFinancialReportData.Initial(int.Parse(DataList.TechData[0].Company.Trim()));
                 //////////////////
 
 

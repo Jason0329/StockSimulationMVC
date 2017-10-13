@@ -30,7 +30,8 @@ namespace StockSimulationMVC.ObjectContext
             modelBuilder.Entity<TechnologicalDataModel>().HasKey<string>(s => s.ID);
             modelBuilder.Entity<MonthRevenueModel>().HasKey<double>(s => s.ID);
             modelBuilder.Entity<BasicFinancialDataModel>().HasKey<double>(s => s.ID);
-            modelBuilder.Entity<BarginDataModel>().HasKey<int>(s => s.ID);
+            //modelBuilder.Entity<BarginDataModel>().HasKey<int>(s => s.ID);
+            modelBuilder.Entity<CompanyModel>().HasKey<double>(s => s.ID);
 
             //Database.SetInitializer<YourDbContext>(null);
             //modelBuilder.Configurations.Add(new TechnologicalDataModelMapping());

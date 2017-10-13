@@ -23,6 +23,8 @@ namespace StockSimulationMVC.Interface
 
 
         IQueryable<TechnologicalDataModel> GetAllTech();
+        IQueryable<MonthRevenueModel> GetAllMonthRevenue();
+        IQueryable<BasicFinancialDataModel> GetAllBasic();
 
     }
 }

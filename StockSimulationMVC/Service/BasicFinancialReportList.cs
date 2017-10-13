@@ -350,6 +350,9 @@ namespace StockSimulationMVC.Models
             {
                 PropertyInfo property = FinancialDataList[i].GetType().GetProperty(CompareName);
                 var Value = property.GetValue(FinancialDataList[i]);
+
+                if (Value == null) return false;
+
                 AverageValues += (double)Value;
             }
 
@@ -375,6 +378,10 @@ namespace StockSimulationMVC.Models
             {
                 PropertyInfo property = RevenueList[RevenueInt].GetType().GetProperty(CompareName);
                 var Value = property.GetValue(RevenueList[RevenueInt]);
+
+                if (Value == null)
+                    return false;
+
                 AverageValues += (double)Value;
             }
 

@@ -28,9 +28,9 @@ namespace StockSimulationMVC.Models
         public double? QTotalFixedAssets { get; set; }
         public double? QTotalOtherAssets { get; set; }
         public double? QTotalAssets { get; set; }
-        public double? QShort_termBorrowing { get; set; }
-        public double? QBillsIssued { get; set; }
-        public double? QFinancialLiabilitiesatFairValueThroughPL_Non_Current { get; set; }
+        //public double? QShort_termBorrowing { get; set; }
+        //public double? QBillsIssued { get; set; }
+        //public double? QFinancialLiabilitiesatFairValueThroughPL_Non_Current { get; set; }
         public double? QPreferredStockLiabilities_Current { get; set; }
         public double? QAP_NP { get; set; }
         public double? QCurrentPortionofLong_TermDebt { get; set; }
@@ -39,12 +39,12 @@ namespace StockSimulationMVC.Models
 
         public double? QTotalOtherLong_TermLiabilities { get; set; }
         public double? QTotalLiabilities { get; set; }
-        public double? QCommonStocks { get; set; }
-        public double? QPreferredStocks { get; set; }
-        public double? QProceedsofNewSharesIssued { get; set; }
-        public double? QReserveforCapitalIncrease { get; set; }
-        public double? QCapitalReserve { get; set; }
-        public double? QLegalReserve { get; set; }
+        //public double? QCommonStocks { get; set; }
+        //public double? QPreferredStocks { get; set; }
+        //public double? QProceedsofNewSharesIssued { get; set; }
+        //public double? QReserveforCapitalIncrease { get; set; }
+        //public double? QCapitalReserve { get; set; }
+        //public double? QLegalReserve { get; set; }
         public double? QAppropriatedRetainedEarnings { get; set; }
         public double? QUn_appropriatedRetained { get; set; }
         public double? QAdjustmentforFXTrade { get; set; }
@@ -67,18 +67,18 @@ namespace StockSimulationMVC.Models
         public double? QCashDividendPerShare { get; set; }
         public double? QStockDividendPerShare_Earning { get; set; }
         public double? QStockDividendPerShare_Capital { get; set; }
-        public double? QCashFlowFromOperatingAction { get; set; }
-        public double? QCashFlowfromInvestmentAction { get; set; }
-        public double? QCashFlowfromFinancingAction { get; set; }
+        //public double? QCashFlowFromOperatingAction { get; set; }
+        //public double? QCashFlowfromInvestmentAction { get; set; }
+        //public double? QCashFlowfromFinancingAction { get; set; }
         public double? QInfluencefromExchange { get; set; }
         public double? QChangeinCashFlow { get; set; }
-        public double? QDividendPaid { get; set; }
-        public double? QLoansDiscounted_BillsPurchased_net { get; set; }
-        public double? QDepositsfromMutualLoansAccounts { get; set; }
-        public double? QInvestListedStock_Curr { get; set; }
-        public double? QInvestListedStock_NonCurr { get; set; }
-        public double? QBorrowingfromNon_FinancialInstitutions { get; set; }
-        public double? QCurrentOfL_TDebt_ExceptBond_CB { get; set; }
+        //public double? QDividendPaid { get; set; }
+        //public double? QLoansDiscounted_BillsPurchased_net { get; set; }
+        //public double? QDepositsfromMutualLoansAccounts { get; set; }
+        //public double? QInvestListedStock_Curr { get; set; }
+        //public double? QInvestListedStock_NonCurr { get; set; }
+        //public double? QBorrowingfromNon_FinancialInstitutions { get; set; }
+        //public double? QCurrentOfL_TDebt_ExceptBond_CB { get; set; }
         public double? QCurrentOfL_TDebt_CB_Bond { get; set; }
         public double? QLong_TermBorrowings { get; set; }
         public double? QBonds_Convertible { get; set; }
@@ -122,9 +122,9 @@ namespace StockSimulationMVC.Models
         public double? QLiabilitiesPercentage { get; set; }
         public double? QEquityTotalAssets { get; set; }
         public double? QInterest_BearingDebtShareholdersEquity { get; set; }
-        public double? QTimesInterestEarned { get; set; }
-        public double? QOperatingIncomePerShares { get; set; }
-        public double? QPre_TaxIncomeCapital { get; set; }
+        //public double? QTimesInterestEarned { get; set; }
+        //public double? QOperatingIncomePerShares { get; set; }
+        //public double? QPre_TaxIncomeCapital { get; set; }
         public double? QTotalAssetTurnover { get; set; }
         public double? QAccountsReceivablesTurnover { get; set; }
         public double? QDaysReceivablesOutstanding { get; set; }
@@ -132,11 +132,11 @@ namespace StockSimulationMVC.Models
         public double? QDaysInventoryOutstanding { get; set; }
         public double? QFixedAssetTurnover { get; set; }
         public double? QEquityTurnover { get; set; }
-        public double? QDaysPayablesOutstanding { get; set; }
-        public double? QNetOperatingCycle { get; set; }
-        public double? QSalesPerEmployee { get; set; }
-        public double? QOperationIncomePerEmployee { get; set; }
-        public double? QFixedAssetsPerEmployee { get; set; }
+        //public double? QDaysPayablesOutstanding { get; set; }
+        //public double? QNetOperatingCycle { get; set; }
+        //public double? QSalesPerEmployee { get; set; }
+        //public double? QOperationIncomePerEmployee { get; set; }
+        //public double? QFixedAssetsPerEmployee { get; set; }
         public double? QPE { get; set; }
         public double? QPB { get; set; }
         public double? QPSR { get; set; }

@@ -111,7 +111,19 @@ namespace StockSimulationMVC
         public IQueryable<TechnologicalDataModel> GetAllTech()
         {
 
-            return this._context.Set<TechnologicalDataModel>().Where(m=>m.Company== "3481").AsQueryable();
+            return this._context.Set<TechnologicalDataModel>().Where(m=>m.Company.Contains("2330")&& m.Date.Year > 2010).AsQueryable();
+        }
+
+        public IQueryable<BasicFinancialDataModel> GetAllBasic()
+        {
+
+            return this._context.Set<BasicFinancialDataModel>().Where(m =>  m.Date.Year > 2007).AsQueryable();
+        }
+
+        public IQueryable<MonthRevenueModel> GetAllMonthRevenue()
+        {
+
+            return this._context.Set<MonthRevenueModel>().Where(m =>  m.Date.Year > 2007).AsQueryable();
         }
 
         public void SaveChanges()

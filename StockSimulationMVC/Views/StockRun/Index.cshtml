@@ -6,7 +6,10 @@
 }
 
 <h2>Index</h2>
-
+<h2>Win : @Model.Win </h2>
+<h2>Loss: @Model.Loss</h2>
+<h2>WinRatio: @Model.WinRatio</h2>
+<h2>平均持有時間: @Model.AverageHoldDays</h2>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -31,7 +34,7 @@
         {
             <tr>
                 <th scope="row">@Count</th>
-                <td>@transction.BuyDetail.Name</td>
+                <td> @transction.BuyDetail.Name (@transction.BuyDetail.Nubmer)</td>
                 <td>@transction.BuyDetail.Date.ToString("yyyy/MM/dd") </td>
                 <td>@transction.BuyDetail.Price</td>
                 <td>@transction.SellDetail.Date.ToString("yyyy/MM/dd") </td>

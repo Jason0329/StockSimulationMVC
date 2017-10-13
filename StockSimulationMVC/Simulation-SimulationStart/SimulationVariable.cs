@@ -104,9 +104,9 @@ namespace StockSimulationMVC.Simulation_SimulationStart
             {
                 StopLossCalPrice = TechData.ClosePrice;
             }
-            if(TechData.ReturnOnInvestment > StopLossCalPricePercentage)
+            if(Accumulation > StopLossCalPricePercentage)
             {
-                StopLossCalPricePercentage = TechData.ReturnOnInvestment;
+                StopLossCalPricePercentage = Accumulation;
             }
                 
         }

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace StockSimulationMVC.Models
 {
-    public class Transaction
+    public class Transaction:IComparable<Transaction>
     {
         BuyModel BuyInstrument;
         SellModel SellInstrument;
@@ -31,6 +31,14 @@ namespace StockSimulationMVC.Models
 
             if (SellInstrument != null)
                 CalculateResult();
+        }
+
+        public int CompareTo(Transaction other)
+        {
+            if (other == null)
+                return 1;
+            else
+                return this.BuyDetail.Date.CompareTo(other.BuyDetail.Date);
         }
 
         public void Sell(string Number, string Name, Decimal Price, DateTime datetime, int share = 1)
