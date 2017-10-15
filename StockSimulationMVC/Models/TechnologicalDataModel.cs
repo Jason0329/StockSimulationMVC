@@ -8,7 +8,7 @@ namespace StockSimulationMVC.Models
     public class TechnologicalDataModel
     {
         public string ID { get; set; }
-        public string Company { get; set; }
+        public int Company { get; set; }
         public string CompanyName { get; set; }
         public DateTime Date { get; set; }
         public Decimal OpenPrice { get; set; }

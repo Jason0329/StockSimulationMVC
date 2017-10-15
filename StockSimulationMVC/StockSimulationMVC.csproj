@@ -48,11 +48,11 @@
     <Reference Include="Autofac">
       <HintPath>..\..\..\..\..\Desktop\客戶專區\nopCommerce_3.90_Source\Libraries\Nop.Data\bin\Debug\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\..\..\..\..\Desktop\客戶專區\nopCommerce_3.90_Source\Libraries\Nop.Data\bin\Debug\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\..\GenericRepository\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -60,7 +60,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -204,6 +203,7 @@
     <Compile Include="Models\BasicFinancialDataModel.cs" />
     <Compile Include="Models\CompanyModel.cs" />
     <Compile Include="ObjectContext\CompanyModelMapping.cs" />
+    <Compile Include="Optimize\OptimizeList.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -228,6 +228,7 @@
     <Compile Include="ObjectContext\MonthRevenueMapping.cs" />
     <Compile Include="ObjectContext\TechnologicalDataModelMapping.cs" />
     <Compile Include="ObjectContext\DataObjectContext.cs" />
+    <Compile Include="Optimize\Optimize.cs" />
     <Compile Include="Service\TransactionList.cs" />
     <Compile Include="Service\TransactionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -293,6 +294,8 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\StockRun\Index.cshtml" />
+    <Content Include="Views\Optimize\OptimizeList.cshtml" />
+    <Content Include="Views\StockRun\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

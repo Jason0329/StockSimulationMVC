@@ -27,12 +27,13 @@ namespace StockSimulationMVC
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            InitialData.Initial();
 
             //InitialData.Initial();
             //Strategy_Jason1 Strategy = new Strategy_Jason1();
             //SimulationStart Start = new SimulationStart(Strategy);
             //Start.Run();
-            
+
 
             //LineGraph line = new LineGraph();
             //line.AddLineGraphDictionary("MoveAverageValue",3);
@@ -47,7 +48,7 @@ namespace StockSimulationMVC
             //    .InstancePerLifetimeScope();
 
             //var container = builder.Build();
-            
+
             //BasicFinancialDataModel tt = new BasicFinancialDataModel();
             //tt.ID = 5;
             //tt.LongTermLiabilities = 324;

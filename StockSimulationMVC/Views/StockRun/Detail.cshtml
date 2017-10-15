@@ -1,0 +1,53 @@
+﻿@model StockSimulationMVC.Service.TransactionList
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<h2>Win : @Model.Win </h2>
+<h2>Loss: @Model.Loss</h2>
+<h2>WinRatio: @Model.WinRatio</h2>
+<h2>平均持有時間: @Model.AverageHoldDays</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>買賣次數</th>
+            <th>公司</th>
+            <th>買進日期</th>
+            <th>買進價格</th>
+            <th>賣出日期</th>
+            <th>賣出價格</th>
+            <th>獲利</th>
+            <th>持有天數</th>
+            <th>報酬率</th>
+            <th>年化報酬率</th>
+        </tr>
+    </thead>
+
+    @{int Count = 1; }
+
+    <tbody>
+
+        @foreach (var transction in Model._TransactionList)
+        {
+            <tr>
+                <th scope="row">@Count</th>
+                <td> @transction.BuyDetail.Name (@transction.BuyDetail.Nubmer)</td>
+                <td>@transction.BuyDetail.Date.ToString("yyyy/MM/dd") </td>
+                <td>@transction.BuyDetail.Price</td>
+                <td>@transction.SellDetail.Date.ToString("yyyy/MM/dd") </td>
+                <td>@transction.SellDetail.Price</td>
+                <td>@transction.Result.Revenue</td>
+                <td>@transction.Result.HoldDays</td>
+                <td>@transction.Result.RateOfReturn %</td>
+                <td>@transction.Result.RateOfReturnYearly %</td>
+            </tr>
+
+
+            Count++;
+
+        }
+    </tbody>
+</table>

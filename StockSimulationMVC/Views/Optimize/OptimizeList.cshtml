@@ -1,0 +1,36 @@
+﻿@model IEnumerable<StockSimulationMVC.Service.TransactionList>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th></th>
+    </tr>
+
+    @{ int Count = 1;}
+@foreach (var item in Model) {
+    <tr>
+        
+        <td><a href="/StockRun/Detail/@Count">
+            Win : @item.Win</a>
+            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+        </td>
+        <td>
+            Loss : @item.Loss           
+        </td>
+        <td>
+            WinRatio : @item.WinRatio
+        </td>
+        <td>
+            AverageHoldDays : @item.AverageHoldDays
+        </td>
+      
+    </tr>
+
+    Count++;
+}
+
+</table>

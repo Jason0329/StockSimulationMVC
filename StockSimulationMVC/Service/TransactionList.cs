@@ -28,11 +28,19 @@ namespace StockSimulationMVC.Service
                 else
                     Loss++;
 
-                AverageHoldDays += _TransactionList[i].Result.HoldDays;
+                AverageHoldDays += Math.Round(_TransactionList[i].Result.HoldDays,2);
             }
 
             WinRatio = Win / (Win + Loss);
-            AverageHoldDays = AverageHoldDays / _TransactionList.Count;
+            AverageHoldDays = Math.Round(AverageHoldDays / _TransactionList.Count * 100, 2);
+        }
+
+        public void AddTransactionList(List<Transaction> transactiondata)
+        {
+            foreach(var transaction in transactiondata)
+            {
+                _TransactionList.Add(transaction);
+            }
         }
     }
 }

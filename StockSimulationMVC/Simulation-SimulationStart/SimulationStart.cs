@@ -12,7 +12,7 @@ namespace StockSimulationMVC.Simulation_SimulationStart
     public class SimulationStart
     {
         readonly int SimualationDays = 1000;
-        List<double> Company;//還未初始化
+        List<int> Company;//還未初始化
         
         TransactionList Transaction_List;
         private IStrategy _strategy;
@@ -20,16 +20,16 @@ namespace StockSimulationMVC.Simulation_SimulationStart
 
         public SimulationStart(IStrategy strategy )
         {
-            Company = new List<double>();
+            Company = new List<int>();
             var CoData = from _company in InitialData.InitialData_CompanyData
-                         where _company.ID ==2330
-                         select _company.ID;
+                         where _company.ID ==2330 || _company.ID == 2412
+                         select _company.Company;
 
             //foreach(var data in CoData)
             //{
             //    Company.Add(data)
             //}
-            Company = (List<double>)CoData.ToList();
+            Company = (List<int>)CoData.ToList();
 
             //for(int i=0; i<InitialData.InitialData_TechnologicalData.Count; i++)
             //{
@@ -56,7 +56,7 @@ namespace StockSimulationMVC.Simulation_SimulationStart
             {               
                 SimulationVariable _SimulationVariable = new SimulationVariable();
                 Transaction transaction = new Transaction() ;
-                DataList DataList = new DataList(Company[i].ToString());
+                DataList DataList = new DataList(Company[i]);
                 BasicFinancialReportListModel BasicFinancialReportData = new BasicFinancialReportListModel();
 
                 //////////////////
@@ -70,7 +70,7 @@ namespace StockSimulationMVC.Simulation_SimulationStart
 
                 if (DataList.TechData.Count == 0) continue;
 
-                BasicFinancialReportData.Initial(int.Parse(DataList.TechData[0].Company.Trim()));
+                BasicFinancialReportData.Initial(DataList.TechData[0].Company);
                 //////////////////
 
 
