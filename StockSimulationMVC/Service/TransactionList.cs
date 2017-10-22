@@ -13,6 +13,10 @@ namespace StockSimulationMVC.Service
         public double Loss = 0;
         public double WinRatio = 0;
         public double AverageHoldDays = 0;
+        public decimal ExpectedRateOfReturn = 0;
+        public decimal MaxRateOfReturn = 0;
+        public decimal MinRateOfReturn = 0;
+        public decimal StandardDeviationRateOfReturn = 0;
 
         public TransactionList()
         {
@@ -21,18 +25,33 @@ namespace StockSimulationMVC.Service
 
         public void TransactionStatisticResult()
         {
+            if (_TransactionList.Count == 0) return;
+
             for(int i=0; i< _TransactionList.Count;i++)
             {
-                if (_TransactionList[i].Result.RateOfReturn > 0)
+                if (_TransactionList[i].Result.RateOfReturn > 0.5m)
                     Win++;
                 else
                     Loss++;
 
-                AverageHoldDays += Math.Round(_TransactionList[i].Result.HoldDays,2);
+                AverageHoldDays += _TransactionList[i].Result.HoldDays;
+                ExpectedRateOfReturn += _TransactionList[i].Result.RateOfReturn;
+
+                if (_TransactionList[i].Result.RateOfReturn > MaxRateOfReturn)
+                    MaxRateOfReturn = _TransactionList[i].Result.RateOfReturn;
+
+                if (_TransactionList[i].Result.RateOfReturn < MinRateOfReturn)
+                    MinRateOfReturn = _TransactionList[i].Result.RateOfReturn;
+
+                StandardDeviationRateOfReturn += _TransactionList[i].Result.RateOfReturn * _TransactionList[i].Result.RateOfReturn;
             }
 
-            WinRatio = Win / (Win + Loss);
-            AverageHoldDays = Math.Round(AverageHoldDays / _TransactionList.Count * 100, 2);
+            WinRatio = Math.Round(Win / (Win + Loss) * 100, 2);
+            AverageHoldDays = Math.Round(AverageHoldDays / _TransactionList.Count , 2);
+            ExpectedRateOfReturn = Math.Round(ExpectedRateOfReturn / _TransactionList.Count, 2);
+
+            StandardDeviationRateOfReturn = Math.Round(StandardDeviationRateOfReturn / _TransactionList.Count, 2);
+            StandardDeviationRateOfReturn = (decimal)Math.Sqrt((double)Math.Abs(StandardDeviationRateOfReturn - ExpectedRateOfReturn * ExpectedRateOfReturn));
         }
 
         public void AddTransactionList(List<Transaction> transactiondata)

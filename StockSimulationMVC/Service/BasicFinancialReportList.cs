@@ -370,9 +370,9 @@ namespace StockSimulationMVC.Models
         }
         public bool ComparerMonthlyRevenue(string CompareName, double CompareValue, int CompareSeasens, bool CompareValueIsBigger = false)
         {
-            if (RevenueInt < 0 || RevenueInt > RevenueList.Count) return false;
-
+            if (RevenueInt < 0 || RevenueInt - CompareSeasens <= 0 || RevenueList.Count == 0 || RevenueInt > RevenueList.Count) return false;
             double AverageValues = 0;
+    
 
             for (int i = RevenueInt; i > RevenueInt - CompareSeasens; i--)
             {

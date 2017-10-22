@@ -4,28 +4,55 @@
     @Html.ActionLink("Create New", "Create")
 </p>*@
 <table class="table">
-    <tr>
-        <th></th>
-    </tr>
+    <thead>
+        <tr>
+            <th>Win</th>
+            <th>Loss</th>
+            <th>勝率%</th>
+            <th>平均持有時間(天)</th>    
+            <th>期望報酬%</th>     
+            <th>最大報酬%</th>     
+            <th>最低報酬%</th>     
+            <th>報酬標準差%</th>     
+        
+        </tr>
+    </thead>
 
     @{ int Count = 1;}
 @foreach (var item in Model) {
     <tr>
         
         <td><a href="/StockRun/Detail/@Count">
-            Win : @item.Win</a>
+             @item.Win</a>
             @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
         </td>
         <td>
-            Loss : @item.Loss           
+             @item.Loss           
         </td>
         <td>
-            WinRatio : @item.WinRatio
+            @item.WinRatio
         </td>
         <td>
-            AverageHoldDays : @item.AverageHoldDays
+             @item.AverageHoldDays
+        </td>
+        <td>
+            @item.ExpectedRateOfReturn
+        </td>
+        <td>
+            @item.MaxRateOfReturn
+        </td>
+        <td>
+            @item.MinRateOfReturn
+        </td>
+        <td>
+            @item.StandardDeviationRateOfReturn
+        </td>
+        <td>
+            <a href="/StockRun/Output/@Count">
+                輸出所選公司
+            </a>
         </td>
       
     </tr>

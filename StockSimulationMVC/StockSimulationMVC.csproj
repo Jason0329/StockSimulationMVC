@@ -237,6 +237,7 @@
     <Compile Include="Simulation-SimulationStart\SimulationVariable.cs" />
     <Compile Include="Simulation-SimulationStart\SimulationStart.cs" />
     <Compile Include="Strategy\Strategy-Jason1.cs" />
+    <Compile Include="Strategy\Strategy-MoveLine.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

@@ -12,5 +12,7 @@ namespace StockSimulationMVC.Interface
         bool BuyCondition(ref SimulationVariable simulationVariable, ref DataList dataList, ref BasicFinancialReportListModel financialdata, int j);
         bool SellCondition(ref SimulationVariable simulationVariable, ref DataList dataList, ref BasicFinancialReportListModel financialdata, int j);
 
+        //double Acc { get; set; }
+
     }
 }

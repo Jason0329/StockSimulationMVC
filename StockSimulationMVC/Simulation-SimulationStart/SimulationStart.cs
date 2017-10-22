@@ -4,6 +4,7 @@ using StockSimulationMVC.Models;
 using StockSimulationMVC.Service;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -21,28 +22,20 @@ namespace StockSimulationMVC.Simulation_SimulationStart
         public SimulationStart(IStrategy strategy )
         {
             Company = new List<int>();
-            var CoData = from _company in InitialData.InitialData_CompanyData
-                         where _company.ID ==2330 || _company.ID == 2412
-                         select _company.Company;
+            //var CoData = from _company in InitialData.InitialData_CompanyData
+            //             //where _company.ID >2200 && _company.ID <2340
+            //             select _company.Company;
+            //Company = (List<int>)CoData.ToList();
 
-            //foreach(var data in CoData)
-            //{
-            //    Company.Add(data)
-            //}
-            Company = (List<int>)CoData.ToList();
+            StreamReader sr = new StreamReader(@"C:\Users\user\Documents\visual studio 2017\Projects\StockSimulationMVC\StockSimulationMVC\Strategy-DropParameter-3-HaveStockDay-30-5.csv");
+            string[] data = sr.ReadLine().Trim(',').Split(',');
 
-            //for(int i=0; i<InitialData.InitialData_TechnologicalData.Count; i++)
-            //{
-            //    try
-            //    {
-            //        int.Parse(InitialData.InitialData_TechnologicalData[i].Company);
-            //        Company.Add(InitialData.InitialData_TechnologicalData[i].Company, InitialData.InitialData_TechnologicalData[i].Company);
-            //    }
-            //    catch (Exception ee){ }
-            //}
+            foreach(var company in data)
+            {
+                Company.Add(int.Parse(company));
+            }
 
-            //Company.Add("3481");
-            //TechDataList = new TechnologicalDataListModel();
+
             Transaction_List = new TransactionList();
             _strategy = strategy;
             
@@ -63,6 +56,7 @@ namespace StockSimulationMVC.Simulation_SimulationStart
                 DataList.LineGraphData(ref DataList.TechData, "ClosePrice");
                 DataList.AddLineGraphDictionary("MoveAverageValue", 5);
                 DataList.AddLineGraphDictionary("MoveAverageValue", 10);
+                DataList.AddLineGraphDictionary("MoveAverageValue", 20);
                 DataList.AddLineGraphDictionary("MinValue", 1);
                 DataList.AddLineGraphDictionary("MinValue", 10);
                 DataList.AddLineGraphDictionary("BollingerBandsDown", 5 , 1.5);

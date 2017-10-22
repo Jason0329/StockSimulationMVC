@@ -259,3 +259,14 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/StockSimulationMVC/Strategy-DropParameter-5-HaveStockDay-30-7.csv
+/StockSimulationMVC/Strategy-DropParameter-5-HaveStockDay-30-6.csv
+/StockSimulationMVC/Strategy-DropParameter-5-HaveStockDay-30-5.csv
+/StockSimulationMVC/Strategy-DropParameter-4-HaveStockDay-30-7.csv
+/StockSimulationMVC/Strategy-DropParameter-4-HaveStockDay-30-6.csv
+/StockSimulationMVC/Strategy-DropParameter-4-HaveStockDay-30-5.csv
+/StockSimulationMVC/Strategy-DropParameter-4-HaveStockDay-30-4.csv
+/StockSimulationMVC/Strategy-DropParameter-3-HaveStockDay-30-8.csv
+/StockSimulationMVC/Strategy-DropParameter-3-HaveStockDay-30-7.csv
+/StockSimulationMVC/Strategy-DropParameter-3-HaveStockDay-30-6.csv
+/StockSimulationMVC/Strategy-DropParameter-3-HaveStockDay-30-5.csv

@@ -38,20 +38,23 @@ namespace StockSimulationMVC.Core
             InitialData_TechnologicalData = container.Resolve<IRepository<TechnologicalDataModel>>(new TypedParameter(typeof(DbContext), new DataObjectContext())).GetAllTech().ToList();
             InitialData_CompanyData = container.Resolve<IRepository<CompanyModel>>(new TypedParameter(typeof(DbContext), new DataObjectContext())).GetAll().ToList();
 
+
+            //var ss = from data in InitialData_BasicFinancialData where data.Date.Year == 2017 && data.Date.Month > 3 select data;
+            //List<BasicFinancialDataModel> dd = ss.ToList();
+
             //string record = "";
-            //for (int i=0; i<InitialData_BasicFinancialData.Count; i++)
+            //for (int i = 0; i < dd.Count; i++)
             //{
             //    GenericRepository<CompanyModel> coo = new GenericRepository<CompanyModel>(new DataObjectContext());
             //    CompanyModel co = new CompanyModel();
 
 
-            //    if (record.Contains(InitialData_BasicFinancialData[i].Company.ToString()))
-            //        continue ;
 
-            //    record += InitialData_BasicFinancialData[i].Company;
-            //    co.ID = InitialData_BasicFinancialData[i].Company;
-            //    co.Company = InitialData_BasicFinancialData[i].Company;
-            //    co.CompanyName = InitialData_BasicFinancialData[i].CompanyName;
+
+
+            //    co.ID = dd[i].Company;
+            //    co.Company = dd[i].Company;
+            //    co.CompanyName = dd[i].CompanyName;
 
 
 
@@ -65,6 +68,7 @@ namespace StockSimulationMVC.Core
             //    {
             //    }
 
+            //}
         }
     }
 }
