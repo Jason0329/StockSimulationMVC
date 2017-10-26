@@ -22,18 +22,18 @@ namespace StockSimulationMVC.Simulation_SimulationStart
         public SimulationStart(IStrategy strategy )
         {
             Company = new List<int>();
-            //var CoData = from _company in InitialData.InitialData_CompanyData
-            //             //where _company.ID >2200 && _company.ID <2340
-            //             select _company.Company;
-            //Company = (List<int>)CoData.ToList();
+            var CoData = from _company in InitialData.InitialData_CompanyData
+                             //where _company.ID >2200 && _company.ID <2340
+                         select _company.Company;
+            Company = (List<int>)CoData.ToList();
 
-            StreamReader sr = new StreamReader(@"C:\Users\user\Documents\visual studio 2017\Projects\StockSimulationMVC\StockSimulationMVC\Strategy-DropParameter-3-HaveStockDay-30-5.csv");
-            string[] data = sr.ReadLine().Trim(',').Split(',');
+            //StreamReader sr = new StreamReader(@"C:\Users\user\Documents\visual studio 2017\Projects\StockSimulationMVC\StockSimulationMVC\Strategy-DropParameter-3-HaveStockDay-30-5.csv");
+            //string[] data = sr.ReadLine().Trim(',').Split(',');
 
-            foreach(var company in data)
-            {
-                Company.Add(int.Parse(company));
-            }
+            //foreach(var company in data)
+            //{
+            //    Company.Add(int.Parse(company));
+            //}
 
 
             Transaction_List = new TransactionList();
@@ -57,9 +57,10 @@ namespace StockSimulationMVC.Simulation_SimulationStart
                 DataList.AddLineGraphDictionary("MoveAverageValue", 5);
                 DataList.AddLineGraphDictionary("MoveAverageValue", 10);
                 DataList.AddLineGraphDictionary("MoveAverageValue", 20);
+                DataList.AddLineGraphDictionary("MoveAverageValue", 60);
                 DataList.AddLineGraphDictionary("MinValue", 1);
                 DataList.AddLineGraphDictionary("MinValue", 10);
-                DataList.AddLineGraphDictionary("BollingerBandsDown", 5 , 1.5);
+                DataList.AddLineGraphDictionary("BollingerBandsDown", 5 , 1.7);
                 DataList.AddLineGraphDictionary("MoveAverageValue", 1);
 
                 if (DataList.TechData.Count == 0) continue;

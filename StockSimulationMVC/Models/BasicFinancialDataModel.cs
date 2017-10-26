@@ -67,8 +67,8 @@ namespace StockSimulationMVC.Models
         public double? QCashDividendPerShare { get; set; }
         public double? QStockDividendPerShare_Earning { get; set; }
         public double? QStockDividendPerShare_Capital { get; set; }
-        //public double? QCashFlowFromOperatingAction { get; set; }
-        //public double? QCashFlowfromInvestmentAction { get; set; }
+        public double? QCashFlowFromOperatingAction { get; set; }
+        public double? QCashFlowfromInvestmentAction { get; set; }
         //public double? QCashFlowfromFinancingAction { get; set; }
         public double? QInfluencefromExchange { get; set; }
         public double? QChangeinCashFlow { get; set; }
@@ -144,5 +144,6 @@ namespace StockSimulationMVC.Models
         public double? QCashDividendYield { get; set; }
         public double? QBookValuePerShare_F_ { get; set; }
         public double? MarketCap { get; set; }
+
     }
 }

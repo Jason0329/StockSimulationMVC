@@ -202,6 +202,7 @@
     <Compile Include="Models\BarginRewardDataModel.cs" />
     <Compile Include="Models\BasicFinancialDataModel.cs" />
     <Compile Include="Models\CompanyModel.cs" />
+    <Compile Include="Models\SimTransactionModel.cs" />
     <Compile Include="ObjectContext\CompanyModelMapping.cs" />
     <Compile Include="Optimize\OptimizeList.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -236,8 +237,10 @@
     <Compile Include="Simulation-Product\GetSimulationProduct.cs" />
     <Compile Include="Simulation-SimulationStart\SimulationVariable.cs" />
     <Compile Include="Simulation-SimulationStart\SimulationStart.cs" />
+    <Compile Include="Simulation-Test\SimulateTransaction.cs" />
     <Compile Include="Strategy\Strategy-Jason1.cs" />
     <Compile Include="Strategy\Strategy-MoveLine.cs" />
+    <Compile Include="Strategy\Strategy-Waiting.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -297,6 +300,7 @@
     <Content Include="Views\StockRun\Index.cshtml" />
     <Content Include="Views\Optimize\OptimizeList.cshtml" />
     <Content Include="Views\StockRun\Detail.cshtml" />
+    <Content Include="Views\StockRun\SimTransaction.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

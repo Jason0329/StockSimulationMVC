@@ -1,0 +1,76 @@
+﻿@model IEnumerable<StockSimulationMVC.Models.SimTransactionModel>
+
+@{
+    ViewBag.Title = "SimTransaction";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SimTransaction</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EndCapital)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReturnofInvestment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InvestTimes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AverageHoldDays)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AverageReturnofInvestment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Win)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loss)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WinRatio)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndCapital)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReturnofInvestment) %
+        </td>       
+        <td>
+            @Html.DisplayFor(modelItem => item.InvestTimes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AverageHoldDays)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AverageReturnofInvestment) %
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Win)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Loss)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WinRatio) %
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

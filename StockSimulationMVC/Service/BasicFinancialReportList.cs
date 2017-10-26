@@ -340,7 +340,7 @@ namespace StockSimulationMVC.Models
         }
         #endregion
 
-        public bool ComparerFinancial(string CompareName, double CompareValue, int CompareSeasens , bool CompareValueIsBigger=false)
+        public bool ComparerFinancial(string CompareName, double CompareValue, int CompareSeasens , bool CompareValueIsBigger=false , bool Yearly = false)
         {
             if (BasicFinancialInt - CompareSeasens < 0 || BasicFinancialInt > FinancialDataList.Count) return false;
 
@@ -356,7 +356,14 @@ namespace StockSimulationMVC.Models
                 AverageValues += (double)Value;
             }
 
-            AverageValues = AverageValues / CompareSeasens;
+            if (!Yearly)
+            {
+                AverageValues = AverageValues / CompareSeasens;
+            }
+            else
+            {
+                AverageValues = AverageValues / CompareSeasens * 4;
+            }
 
             if(CompareValueIsBigger)
             {

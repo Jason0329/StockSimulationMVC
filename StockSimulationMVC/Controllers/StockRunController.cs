@@ -3,6 +3,7 @@ using StockSimulationMVC.Interface;
 using StockSimulationMVC.Models;
 using StockSimulationMVC.Service;
 using StockSimulationMVC.Simulation_SimulationStart;
+using StockSimulationMVC.Simulation_Test;
 using StockSimulationMVC.Strategy;
 using System;
 using System.Collections;
@@ -24,6 +25,9 @@ namespace StockSimulationMVC.Controllers
             TransactionList Data = Start.Run();
             Data._TransactionList.Sort();
             Data.TransactionStatisticResult();
+
+            Session["DataResult"] = Data;
+
             return View(Data);
 
         }
@@ -42,7 +46,7 @@ namespace StockSimulationMVC.Controllers
                 GetParameters.Add(data.Split('=')[0], data.Split('=')[1]);
             }
 
-            Strategy_MoveLine Strategy = new Strategy_MoveLine();
+            Strategy_Jason1 Strategy = new Strategy_Jason1();
 
             for (int i=3; i<=10; i++)
             {
@@ -60,6 +64,35 @@ namespace StockSimulationMVC.Controllers
            
             return View("~/Views/Optimize/OptimizeList.cshtml", OptimizeList);
 
+        }
+
+        //public ActionResult SimTransaction()
+        //{
+        //    TransactionList data = (TransactionList)Session["DataResult"];
+        //    SimulateTransaction simulate = new SimulateTransaction(ref data._TransactionList);
+        //    simulate.Run();
+
+        //    return View("~/Views/StockRun/SimTransaction.cshtml", simulate.CapitalSimList);
+        //}
+
+        public ActionResult SimTransaction(int id)
+        {
+            string GetParametersQuery = Request.Url.Query;
+            Hashtable GetParameters = new Hashtable();
+
+            foreach (var reqdata in GetParametersQuery.Trim('?').Split('&'))
+            {
+                GetParameters.Add(reqdata.Split('=')[0], reqdata.Split('=')[1]);
+            }
+
+            id--;
+            List<TransactionList> OptimizeList = (List<TransactionList>)Session["ResultStore"];
+            TransactionList data = OptimizeList[id];
+            SimulateTransaction simulate = new SimulateTransaction(ref data._TransactionList, double.Parse(GetParameters["InitialCapital"].ToString()));
+            simulate.BuyFreq = int.Parse(GetParameters["BuyFreq"].ToString());
+            simulate.Run();
+
+            return View("~/Views/StockRun/SimTransaction.cshtml", simulate.CapitalSimList);
         }
 
         public ActionResult Detail(int id)

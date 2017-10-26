@@ -14,7 +14,7 @@ namespace StockSimulationMVC.Strategy
         int CountDropDays = 0;
         public double Acc = 5;
         public double StopEarn = 5;
-        int CountDropDaysParameter = 3;
+        int CountDropDaysParameter = 5;
 
         //double IStrategy.Acc { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
@@ -35,7 +35,7 @@ namespace StockSimulationMVC.Strategy
         public Strategy_Jason1()
         { }
 
-            public bool BuyCondition(ref SimulationVariable simulationVariable, ref DataList dataList, ref BasicFinancialReportListModel financialdata, int j)
+        public bool BuyCondition(ref SimulationVariable simulationVariable, ref DataList dataList, ref BasicFinancialReportListModel financialdata, int j)
         {
             if (!simulationVariable.HasBuy && dataList.TechData[j].ReturnOnInvestment < 0)
                 CountDropDays++;
